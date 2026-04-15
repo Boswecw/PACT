@@ -1,71 +1,47 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/toon_segment_registry_v1.schema.json",
-  "title": "ToonSegmentRegistryV1",
+  "title": "PACT V1 TOON Segment Registry",
   "type": "object",
   "required": [
-    "schema_version",
     "registry_id",
-    "version",
+    "schema_version",
     "row_definitions"
   ],
   "properties": {
+    "registry_id": {
+      "type": "string"
+    },
     "schema_version": {
       "type": "string",
       "const": "1.0.0"
     },
-    "registry_id": {
-      "type": "string",
-      "const": "toon-segment-registry-v1"
-    },
-    "version": {
-      "type": "string",
-      "const": "v1.0.0"
-    },
     "row_definitions": {
       "type": "array",
-      "minItems": 1,
       "items": {
         "type": "object",
         "required": [
           "row_definition_id",
           "description",
-          "columns"
+          "allowed_packet_classes",
+          "field_order"
         ],
         "properties": {
           "row_definition_id": {
-            "type": "string",
-            "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "minLength": 1
+            "type": "string"
           },
-          "columns": {
+          "allowed_packet_classes": {
             "type": "array",
-            "minItems": 1,
             "items": {
-              "type": "object",
-              "required": [
-                "name",
-                "type"
-              ],
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "pattern": "^[a-z][a-z0-9_]{0,63}$"
-                },
-                "type": {
-                  "type": "string",
-                  "enum": [
-                    "string",
-                    "number",
-                    "integer",
-                    "boolean"
-                  ]
-                }
-              },
-              "additionalProperties": false
+              "type": "string"
+            }
+          },
+          "field_order": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           }
         },
@@ -73,5 +49,6 @@
       }
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/toon_segment_registry_v1.schema.json"
 }

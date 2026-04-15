@@ -1,7 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/negative_constraint.schema.json",
-  "title": "NegativeConstraint",
+  "title": "PACT V1 Negative Constraint",
   "type": "object",
   "required": [
     "constraint_id",
@@ -10,12 +9,12 @@
     "reason_code",
     "created_at",
     "source_review_ref",
-    "active"
+    "active",
+    "superseded_by"
   ],
   "properties": {
     "constraint_id": {
-      "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+      "type": "string"
     },
     "packet_class": {
       "type": "string",
@@ -28,11 +27,10 @@
     "constraint_type": {
       "type": "string",
       "enum": [
-        "content",
-        "budget",
-        "grounding",
-        "serialization",
-        "validation"
+        "quality_guard",
+        "safety_guard",
+        "serialization_guard",
+        "budget_guard"
       ]
     },
     "reason_code": {
@@ -49,11 +47,10 @@
     },
     "created_at": {
       "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+      "format": "date-time"
     },
     "source_review_ref": {
-      "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+      "type": "string"
     },
     "active": {
       "type": "boolean"
@@ -62,9 +59,9 @@
       "type": [
         "string",
         "null"
-      ],
-      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+      ]
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/negative_constraint.schema.json"
 }

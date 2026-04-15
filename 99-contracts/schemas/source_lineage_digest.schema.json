@@ -1,26 +1,34 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/source_lineage_digest.schema.json",
-  "title": "SourceLineageDigest",
+  "title": "PACT V1 Source Lineage Digest",
   "type": "object",
   "required": [
-    "algorithm",
+    "digest_algorithm",
     "digest",
-    "source_count"
+    "source_scope"
   ],
   "properties": {
-    "algorithm": {
+    "digest_algorithm": {
       "type": "string",
-      "const": "sha256"
+      "enum": [
+        "sha256"
+      ]
     },
     "digest": {
       "type": "string",
-      "pattern": "^sha256:[a-f0-9]{64}$"
+      "minLength": 16
     },
-    "source_count": {
-      "type": "integer",
-      "minimum": 1
+    "source_scope": {
+      "type": "string",
+      "enum": [
+        "request",
+        "packet",
+        "segment",
+        "cache_entry"
+      ]
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "description": "Normalized source-lineage digest object.",
+  "$id": "https://bds.local/pact/v1/schemas/source_lineage_digest.schema.json"
 }

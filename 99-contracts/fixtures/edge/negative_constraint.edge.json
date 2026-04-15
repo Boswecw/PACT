@@ -1,0 +1,10 @@
+{
+  "constraint_id": "nc-001",
+  "packet_class": "answer_packet",
+  "constraint_type": "quality_guard",
+  "reason_code": "missing_grounding_support",
+  "created_at": "2026-04-15T18:00:00Z",
+  "source_review_ref": "review-001",
+  "active": false,
+  "superseded_by": "nc-002"
+}

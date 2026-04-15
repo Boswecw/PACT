@@ -1,3 +1,3 @@
-# Harness
+# harness
 
-Replay, regression, and adversarial harnesses will live here.
+Owns replay, regression, and adversarial harness scaffolding.

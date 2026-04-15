@@ -1,0 +1,20 @@
+{
+  "cache_key": "cache-001",
+  "packet_class": "answer_packet",
+  "permission_context_digest": "permctxdigest0001",
+  "source_lineage_digest": {
+    "digest_algorithm": "sha256",
+    "digest": "abcd1234abcd1234",
+    "source_scope": "cache_entry"
+  },
+  "serialization_profile": "yaml_profile",
+  "version_set": {
+    "contract_version": "1.0.0",
+    "runtime_version": "0.1.0",
+    "corpus_version": "0.1.0",
+    "budget_version": "1.0.0",
+    "compatibility_posture": "compatible"
+  },
+  "created_at": "2026-04-15T18:00:00Z",
+  "expires_at": "2026-04-15T18:30:00Z"
+}

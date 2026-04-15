@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/degradation_state_enum.schema.json",
-  "title": "DegradationStateEnum",
+  "$id": "https://bds.local/pact/v1/schemas/degradation_state_enum.schema.json",
+  "title": "PACT V1 Degradation State Enum",
   "type": "string",
   "enum": [
     "normal",

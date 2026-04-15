@@ -1,16 +1,28 @@
 {
   "source_sets": [
     {
-      "source_set_ref": "ss-answer-001",
-      "description": "Grounded answer source set for supported FAQ and records"
+      "source_set_ref": "srcset-pact-plans-001",
+      "description": "PACT V1 plan documents."
     },
     {
-      "source_set_ref": "ss-policy-001",
-      "description": "Policy source set with authoritative policy statements"
+      "source_set_ref": "srcset-pact-policies-001",
+      "description": "PACT V1 governance and readiness docs."
     },
     {
-      "source_set_ref": "ss-search-001",
-      "description": "Search result source set with ranked item rows"
+      "source_set_ref": "srcset-missing-grounding-001",
+      "description": "Intentionally incomplete source set for grounding-failure tests."
+    },
+    {
+      "source_set_ref": "srcset-multi-tenant-001",
+      "description": "Permission-boundary test source set."
+    },
+    {
+      "source_set_ref": "srcset-over-budget-001",
+      "description": "Oversized candidate set for budget tests."
+    },
+    {
+      "source_set_ref": "srcset-adversarial-001",
+      "description": "Hostile retrieval carriers for adversarial tests."
     }
   ]
 }

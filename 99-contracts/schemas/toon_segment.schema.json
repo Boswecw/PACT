@@ -1,7 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/toon_segment.schema.json",
-  "title": "ToonSegment",
+  "title": "PACT V1 TOON Segment",
   "type": "object",
   "required": [
     "segment_id",
@@ -14,32 +13,32 @@
   ],
   "properties": {
     "segment_id": {
-      "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+      "type": "string"
     },
     "segment_version": {
-      "type": "string",
-      "pattern": "^v\\d+\\.\\d+\\.\\d+$"
+      "type": "string"
     },
     "row_definition_id": {
-      "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+      "type": "string"
     },
     "row_count": {
       "type": "integer",
-      "minimum": 1
+      "minimum": 0
     },
     "source_lineage_digest": {
-      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/source_lineage_digest.schema.json"
+      "$ref": "./source_lineage_digest.schema.json"
     },
     "segment_hash": {
       "type": "string",
-      "pattern": "^sha256:[a-f0-9]{64}$"
+      "minLength": 16
     },
     "toon_payload": {
-      "type": "string",
-      "minLength": 1
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/toon_segment.schema.json"
 }

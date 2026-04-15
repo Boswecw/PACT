@@ -1,12 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/answer_packet.schema.json",
-  "title": "AnswerPacket",
+  "$id": "https://bds.local/pact/v1/schemas/answer_packet.schema.json",
+  "title": "PACT V1 Answer Packet",
   "allOf": [
     {
-      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/packet_base.schema.json"
+      "$ref": "./packet_base.schema.json"
     },
     {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "PACT V1 Answer Packet Fields",
       "type": "object",
       "required": [
         "task_goal",
@@ -20,54 +22,21 @@
           "const": "answer_packet"
         },
         "task_goal": {
-          "type": "string",
-          "minLength": 1
+          "type": "string"
         },
         "instruction_block": {
-          "type": "string",
-          "minLength": 1
+          "type": "string"
         },
         "support_blocks": {
           "type": "array",
-          "minItems": 1,
           "items": {
-            "type": "object",
-            "required": [
-              "block_id",
-              "kind",
-              "content"
-            ],
-            "properties": {
-              "block_id": {
-                "type": "string",
-                "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
-              },
-              "kind": {
-                "type": "string",
-                "enum": [
-                  "excerpt",
-                  "summary",
-                  "result_row",
-                  "metadata_bundle"
-                ]
-              },
-              "content": {
-                "type": "string",
-                "minLength": 1
-              },
-              "segment_ref": {
-                "type": "string",
-                "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
-              }
-            },
-            "additionalProperties": false
+            "type": "string"
           }
         },
         "grounding_refs": {
           "type": "array",
-          "minItems": 1,
           "items": {
-            "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/grounding_ref.schema.json"
+            "$ref": "./grounding_ref.schema.json"
           }
         },
         "answer_constraints": {
@@ -76,8 +45,8 @@
             "type": "string"
           }
         }
-      }
+      },
+      "additionalProperties": false
     }
-  ],
-  "unevaluatedProperties": false
+  ]
 }

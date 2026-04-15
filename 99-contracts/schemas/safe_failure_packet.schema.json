@@ -1,7 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/safe_failure_packet.schema.json",
-  "title": "SafeFailurePacket",
+  "title": "PACT V1 Safe Failure Packet",
   "type": "object",
   "required": [
     "schema_version",
@@ -20,16 +19,13 @@
       "const": "1.0.0"
     },
     "failure_packet_id": {
-      "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+      "type": "string"
     },
     "request_id": {
-      "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+      "type": "string"
     },
     "trace_id": {
-      "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+      "type": "string"
     },
     "packet_class": {
       "type": "string",
@@ -42,11 +38,11 @@
     "failure_state": {
       "type": "string",
       "enum": [
+        "intake_rejection",
+        "compiler_failure",
         "validation_failure",
         "grounding_failure",
-        "permission_failure",
         "budget_failure",
-        "compile_failure",
         "safe_failure"
       ]
     },
@@ -54,18 +50,19 @@
       "type": "boolean"
     },
     "operator_trace_ref": {
-      "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+      "type": "string"
     },
     "public_reason_code": {
       "type": "string",
       "enum": [
-        "temporarily_unavailable",
-        "cannot_answer_safely",
-        "request_not_permitted",
-        "request_too_large"
+        "validation_failed",
+        "grounding_unavailable",
+        "over_budget",
+        "permission_unresolved",
+        "serialization_failed"
       ]
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/safe_failure_packet.schema.json"
 }

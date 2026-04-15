@@ -1,41 +1,36 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/version_set.schema.json",
-  "title": "VersionSet",
+  "title": "PACT V1 Version Set",
   "type": "object",
   "required": [
-    "schema_version",
-    "pact_contract_version",
-    "retrieval_revision",
-    "pruning_revision",
-    "packet_revision",
-    "serialization_registry_version"
+    "contract_version",
+    "runtime_version",
+    "corpus_version",
+    "budget_version",
+    "compatibility_posture"
   ],
   "properties": {
-    "schema_version": {
-      "type": "string",
-      "const": "1.0.0"
+    "contract_version": {
+      "type": "string"
     },
-    "pact_contract_version": {
-      "type": "string",
-      "pattern": "^v\\d+\\.\\d+\\.\\d+$"
+    "runtime_version": {
+      "type": "string"
     },
-    "retrieval_revision": {
-      "type": "string",
-      "pattern": "^rev-[a-z0-9._-]+$"
+    "corpus_version": {
+      "type": "string"
     },
-    "pruning_revision": {
-      "type": "string",
-      "pattern": "^rev-[a-z0-9._-]+$"
+    "budget_version": {
+      "type": "string"
     },
-    "packet_revision": {
+    "compatibility_posture": {
       "type": "string",
-      "pattern": "^rev-[a-z0-9._-]+$"
-    },
-    "serialization_registry_version": {
-      "type": "string",
-      "pattern": "^v\\d+\\.\\d+\\.\\d+$"
+      "enum": [
+        "compatible",
+        "migration_required",
+        "incompatible"
+      ]
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/version_set.schema.json"
 }

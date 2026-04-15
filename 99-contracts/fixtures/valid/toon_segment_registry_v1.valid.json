@@ -1,0 +1,19 @@
+{
+  "registry_id": "toon-segment-registry-v1",
+  "schema_version": "1.0.0",
+  "row_definitions": [
+    {
+      "row_definition_id": "ranked_result_row_v1",
+      "description": "Ranked search-assist result rows.",
+      "allowed_packet_classes": [
+        "search_assist_packet"
+      ],
+      "field_order": [
+        "rank",
+        "title",
+        "source_ref",
+        "summary"
+      ]
+    }
+  ]
+}

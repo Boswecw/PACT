@@ -1,3 +1,3 @@
-# Plans
+# plans
 
-Place approved PACT V1 plan documents here.
+PACT plan artifacts.

@@ -1,65 +1,25 @@
 {
-  "schema_version": "1.0.0",
-  "corpus_id": "pact-v1-starter-corpus",
-  "target_min_cases": 50,
-  "current_case_count": 15,
-  "required_classes": [
-    {
-      "case_class": "golden_success",
-      "target_min": 18,
-      "current_count": 10
-    },
-    {
-      "case_class": "degraded_safe",
-      "target_min": 8,
-      "current_count": 3
-    },
-    {
-      "case_class": "safe_failure",
-      "target_min": 6,
-      "current_count": 2
-    },
-    {
-      "case_class": "malformed_invalid",
-      "target_min": 5,
-      "current_count": 0
-    },
-    {
-      "case_class": "permission_boundary",
-      "target_min": 5,
-      "current_count": 0
-    },
-    {
-      "case_class": "over_budget",
-      "target_min": 4,
-      "current_count": 0
-    },
-    {
-      "case_class": "grounding_failure",
-      "target_min": 2,
-      "current_count": 0
-    },
-    {
-      "case_class": "adversarial_retrieval",
-      "target_min": 2,
-      "current_count": 0
-    }
-  ],
-  "packet_class_distribution": {
-    "answer_packet": {
-      "target_min": 20,
-      "current_count": 6
-    },
-    "policy_response_packet": {
-      "target_min": 15,
-      "current_count": 4
-    },
-    "search_assist_packet": {
-      "target_min": 15,
-      "current_count": 5
-    }
+  "manifest_id": "pact-v1-corpus-manifest",
+  "schema_version": "0.1.0",
+  "status": "foundation_started",
+  "minimum_required_cases": 50,
+  "current_case_count": 10,
+  "class_targets": {
+    "golden_success": 18,
+    "degraded_safe": 8,
+    "safe_failure": 6,
+    "malformed_invalid": 5,
+    "permission_boundary": 5,
+    "over_budget": 4,
+    "grounding_failure": 2,
+    "adversarial_retrieval": 2
   },
-  "files": [
+  "packet_class_targets": {
+    "answer_packet": 20,
+    "policy_response_packet": 15,
+    "search_assist_packet": 15
+  },
+  "case_files": [
     "cases/golden_success.jsonl",
     "cases/degraded_safe.jsonl",
     "cases/safe_failure.jsonl",
@@ -68,5 +28,7 @@
     "cases/over_budget.jsonl",
     "cases/grounding_failure.jsonl",
     "cases/adversarial_retrieval.jsonl"
-  ]
+  ],
+  "source_index": "sources/source_set_index.json",
+  "notes": "Slice 01 seeds starter cases and structure only. Corpus remains below the V1 minimum floor."
 }

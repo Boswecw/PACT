@@ -1,5 +1,4 @@
-# shared/
+# shared
 
-Only pure utilities belong here, such as digest helpers and time utilities.
-
-No packet logic, runtime orchestration, or app-specific behavior belongs in this directory.
+Truly shared, non-domain-specific helpers only.
+Do not turn this into a dumping ground.

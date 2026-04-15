@@ -1,12 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/policy_response_packet.schema.json",
-  "title": "PolicyResponsePacket",
+  "$id": "https://bds.local/pact/v1/schemas/policy_response_packet.schema.json",
+  "title": "PACT V1 Policy Response Packet",
   "allOf": [
     {
-      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/packet_base.schema.json"
+      "$ref": "./packet_base.schema.json"
     },
     {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "PACT V1 Policy Response Packet Fields",
       "type": "object",
       "required": [
         "policy_scope",
@@ -20,41 +22,34 @@
           "const": "policy_response_packet"
         },
         "policy_scope": {
-          "type": "string",
-          "minLength": 1
+          "type": "string"
         },
         "policy_statements": {
           "type": "array",
-          "minItems": 1,
           "items": {
-            "type": "string",
-            "minLength": 1
+            "type": "string"
           }
         },
         "required_cautions": {
           "type": "array",
-          "minItems": 1,
           "items": {
-            "type": "string",
-            "minLength": 1
+            "type": "string"
           }
         },
         "grounding_refs": {
           "type": "array",
-          "minItems": 1,
           "items": {
-            "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/grounding_ref.schema.json"
+            "$ref": "./grounding_ref.schema.json"
           }
         },
         "disallowed_answer_modes": {
           "type": "array",
           "items": {
-            "type": "string",
-            "minLength": 1
+            "type": "string"
           }
         }
-      }
+      },
+      "additionalProperties": false
     }
-  ],
-  "unevaluatedProperties": false
+  ]
 }

@@ -1,0 +1,20 @@
+{
+  "segment_id": "seg-001",
+  "segment_version": "1.0.0",
+  "row_definition_id": "ranked_result_row_v1",
+  "row_count": 1,
+  "source_lineage_digest": {
+    "digest_algorithm": "sha256",
+    "digest": "abcd1234abcd1234",
+    "source_scope": "segment"
+  },
+  "segment_hash": "segmenthash000001",
+  "toon_payload": [
+    {
+      "rank": 1,
+      "title": "Doc A",
+      "source_ref": "doc-a",
+      "summary": "Relevant result."
+    }
+  ]
+}

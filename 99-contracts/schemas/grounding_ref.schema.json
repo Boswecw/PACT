@@ -1,37 +1,42 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/grounding_ref.schema.json",
-  "title": "GroundingRef",
+  "title": "PACT V1 Grounding Ref",
   "type": "object",
   "required": [
+    "grounding_id",
     "source_ref",
+    "authority_class",
     "excerpt",
-    "excerpt_hash",
-    "authority_level"
+    "start_offset",
+    "end_offset"
   ],
   "properties": {
+    "grounding_id": {
+      "type": "string"
+    },
     "source_ref": {
-      "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+      "type": "string"
     },
-    "excerpt": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 2000
-    },
-    "excerpt_hash": {
-      "type": "string",
-      "pattern": "^sha256:[a-f0-9]{64}$"
-    },
-    "authority_level": {
+    "authority_class": {
       "type": "string",
       "enum": [
-        "canonical",
-        "strong_derived",
-        "weak_derived",
-        "provisional"
+        "primary",
+        "secondary",
+        "derived"
       ]
+    },
+    "excerpt": {
+      "type": "string"
+    },
+    "start_offset": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "end_offset": {
+      "type": "integer",
+      "minimum": 0
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/grounding_ref.schema.json"
 }
