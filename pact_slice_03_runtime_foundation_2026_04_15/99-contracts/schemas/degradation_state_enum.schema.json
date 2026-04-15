@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bds.local/pact/v1/schemas/degradation_state_enum.schema.json",
+  "title": "PACT V1 Degradation State Enum",
+  "type": "string",
+  "enum": [
+    "normal",
+    "retrieval_degraded",
+    "rerank_degraded",
+    "pruning_degraded",
+    "cache_degraded",
+    "minimum_viable_packet",
+    "safe_failure"
+  ]
+}

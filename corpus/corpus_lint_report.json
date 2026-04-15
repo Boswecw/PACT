@@ -1,0 +1,22 @@
+{
+  "report_kind": "corpus_lint",
+  "manifest_version": "0.2.0",
+  "total_cases": 23,
+  "case_class_counts": {
+    "golden_success": 10,
+    "degraded_safe": 3,
+    "safe_failure": 2,
+    "malformed_invalid": 2,
+    "permission_boundary": 2,
+    "over_budget": 1,
+    "grounding_failure": 1,
+    "serialization_mismatch": 1,
+    "adversarial_retrieval": 1
+  },
+  "packet_class_counts": {
+    "answer_packet": 10,
+    "policy_response_packet": 5,
+    "search_assist_packet": 8
+  },
+  "failures": []
+}

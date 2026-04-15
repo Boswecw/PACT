@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PACT V1 Grounding Ref",
+  "type": "object",
+  "required": [
+    "grounding_id",
+    "source_ref",
+    "authority_class",
+    "excerpt",
+    "start_offset",
+    "end_offset"
+  ],
+  "properties": {
+    "grounding_id": {
+      "type": "string"
+    },
+    "source_ref": {
+      "type": "string"
+    },
+    "authority_class": {
+      "type": "string",
+      "enum": [
+        "primary",
+        "secondary",
+        "derived"
+      ]
+    },
+    "excerpt": {
+      "type": "string"
+    },
+    "start_offset": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "end_offset": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/grounding_ref.schema.json"
+}

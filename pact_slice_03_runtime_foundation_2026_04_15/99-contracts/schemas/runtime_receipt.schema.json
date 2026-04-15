@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PACT V1 Runtime Receipt",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "request_id",
+    "trace_id",
+    "packet_id",
+    "packet_class",
+    "version_set",
+    "retrieval_mode",
+    "pruning_mode",
+    "serialization_profile",
+    "degradation_state",
+    "source_lineage_digest",
+    "packet_hash",
+    "token_counts",
+    "latency_breakdown",
+    "model_call_allowed",
+    "safe_failure_invoked"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "receipt_id": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "trace_id": {
+      "type": "string"
+    },
+    "packet_id": {
+      "type": "string"
+    },
+    "packet_class": {
+      "type": "string",
+      "enum": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ]
+    },
+    "version_set": {
+      "$ref": "./version_set.schema.json"
+    },
+    "retrieval_mode": {
+      "type": "string",
+      "enum": [
+        "hybrid",
+        "lexical_only",
+        "vector_only",
+        "cache_only"
+      ]
+    },
+    "pruning_mode": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "reduced",
+        "none"
+      ]
+    },
+    "serialization_profile": {
+      "$ref": "./serialization_profile_enum.schema.json"
+    },
+    "degradation_state": {
+      "$ref": "./degradation_state_enum.schema.json"
+    },
+    "source_lineage_digest": {
+      "$ref": "./source_lineage_digest.schema.json"
+    },
+    "packet_hash": {
+      "type": "string",
+      "minLength": 16
+    },
+    "token_counts": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Token Counts",
+      "type": "object",
+      "required": [
+        "input_tokens",
+        "naive_baseline_tokens",
+        "reduction_percentage"
+      ],
+      "properties": {
+        "input_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "naive_baseline_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reduction_percentage": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "latency_breakdown": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Latency Breakdown",
+      "type": "object",
+      "required": [
+        "retrieval_ms",
+        "rerank_prune_ms",
+        "compile_validate_ms",
+        "total_pact_overhead_ms"
+      ],
+      "properties": {
+        "retrieval_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rerank_prune_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "compile_validate_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total_pact_overhead_ms": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "model_call_allowed": {
+      "type": "boolean"
+    },
+    "safe_failure_invoked": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/runtime_receipt.schema.json"
+}

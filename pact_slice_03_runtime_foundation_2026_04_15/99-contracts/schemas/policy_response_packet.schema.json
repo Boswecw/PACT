@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bds.local/pact/v1/schemas/policy_response_packet.schema.json",
+  "title": "PACT V1 Policy Response Packet",
+  "allOf": [
+    {
+      "$ref": "./packet_base.schema.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "policy_scope",
+        "policy_statements",
+        "required_cautions",
+        "grounding_refs",
+        "disallowed_answer_modes"
+      ],
+      "properties": {
+        "packet_class": {
+          "const": "policy_response_packet"
+        },
+        "policy_scope": {
+          "type": "string"
+        },
+        "policy_statements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "required_cautions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "grounding_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "./grounding_ref.schema.json"
+          }
+        },
+        "disallowed_answer_modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

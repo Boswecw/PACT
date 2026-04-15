@@ -1,10 +1,62 @@
 {
-  "schema_validation_run": "passed",
-  "validated_schema_count": 15,
-  "fixture_pairs_validated": 15,
-  "notes": [
-    "All valid fixtures passed against their corresponding schemas.",
-    "All invalid fixtures were rejected by their corresponding schemas.",
-    "Edge fixtures were created but not all are part of the automated validation matrix."
-  ]
+  "schema_bundle_version": "1.0.0",
+  "report_kind": "fixture_validation",
+  "valid_passed": [
+    "99-contracts/fixtures/valid/packet_base.valid.json",
+    "99-contracts/fixtures/valid/answer_packet.valid.json",
+    "99-contracts/fixtures/valid/policy_response_packet.valid.json",
+    "99-contracts/fixtures/valid/search_assist_packet.valid.json",
+    "99-contracts/fixtures/valid/safe_failure_packet.valid.json",
+    "99-contracts/fixtures/valid/runtime_receipt.valid.json",
+    "99-contracts/fixtures/valid/negative_constraint.valid.json",
+    "99-contracts/fixtures/valid/serialization_profile_enum.valid.json",
+    "99-contracts/fixtures/valid/degradation_state_enum.valid.json",
+    "99-contracts/fixtures/valid/version_set.valid.json",
+    "99-contracts/fixtures/valid/toon_segment.valid.json",
+    "99-contracts/fixtures/valid/toon_segment_registry_v1.valid.json",
+    "99-contracts/fixtures/valid/grounding_ref.valid.json",
+    "99-contracts/fixtures/valid/source_lineage_digest.valid.json",
+    "99-contracts/fixtures/valid/cache_manifest_entry.valid.json"
+  ],
+  "invalid_rejected": [
+    "99-contracts/fixtures/invalid/packet_base.invalid.json",
+    "99-contracts/fixtures/invalid/answer_packet.invalid.json",
+    "99-contracts/fixtures/invalid/policy_response_packet.invalid.json",
+    "99-contracts/fixtures/invalid/search_assist_packet.invalid.json",
+    "99-contracts/fixtures/invalid/safe_failure_packet.invalid.json",
+    "99-contracts/fixtures/invalid/runtime_receipt.invalid.json",
+    "99-contracts/fixtures/invalid/negative_constraint.invalid.json",
+    "99-contracts/fixtures/invalid/serialization_profile_enum.invalid.json",
+    "99-contracts/fixtures/invalid/degradation_state_enum.invalid.json",
+    "99-contracts/fixtures/invalid/version_set.invalid.json",
+    "99-contracts/fixtures/invalid/toon_segment.invalid.json",
+    "99-contracts/fixtures/invalid/toon_segment_registry_v1.invalid.json",
+    "99-contracts/fixtures/invalid/grounding_ref.invalid.json",
+    "99-contracts/fixtures/invalid/source_lineage_digest.invalid.json",
+    "99-contracts/fixtures/invalid/cache_manifest_entry.invalid.json"
+  ],
+  "edge_passed": [
+    "99-contracts/fixtures/edge/packet_base.edge.json",
+    "99-contracts/fixtures/edge/answer_packet.edge.json",
+    "99-contracts/fixtures/edge/policy_response_packet.edge.json",
+    "99-contracts/fixtures/edge/search_assist_packet.edge.json",
+    "99-contracts/fixtures/edge/safe_failure_packet.edge.json",
+    "99-contracts/fixtures/edge/runtime_receipt.edge.json",
+    "99-contracts/fixtures/edge/negative_constraint.edge.json",
+    "99-contracts/fixtures/edge/serialization_profile_enum.edge.json",
+    "99-contracts/fixtures/edge/degradation_state_enum.edge.json",
+    "99-contracts/fixtures/edge/version_set.edge.json",
+    "99-contracts/fixtures/edge/toon_segment.edge.json",
+    "99-contracts/fixtures/edge/toon_segment_registry_v1.edge.json",
+    "99-contracts/fixtures/edge/grounding_ref.edge.json",
+    "99-contracts/fixtures/edge/source_lineage_digest.edge.json",
+    "99-contracts/fixtures/edge/cache_manifest_entry.edge.json"
+  ],
+  "failures": [],
+  "counts": {
+    "valid_passed": 15,
+    "invalid_rejected": 15,
+    "edge_passed": 15,
+    "failures": 0
+  }
 }
