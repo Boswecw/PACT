@@ -1,0 +1,51 @@
+{
+  "total_cases": 6,
+  "counts": {
+    "success": 4,
+    "safe_failure": 2
+  },
+  "results": [
+    {
+      "case_id": "hybrid_fallback_success",
+      "kind": "success",
+      "packet_class": "answer_packet",
+      "degradation_state": "retrieval_degraded",
+      "receipt_id": "rcpt_0379827fd67e9418"
+    },
+    {
+      "case_id": "reranker_unavailable_success",
+      "kind": "success",
+      "packet_class": "search_assist_packet",
+      "degradation_state": "rerank_degraded",
+      "receipt_id": "rcpt_a432ecde75d6a3af"
+    },
+    {
+      "case_id": "minimum_viable_success",
+      "kind": "success",
+      "packet_class": "answer_packet",
+      "degradation_state": "minimum_viable_packet",
+      "receipt_id": "rcpt_333d1b9f7d597b1c"
+    },
+    {
+      "case_id": "cache_degraded_success",
+      "kind": "success",
+      "packet_class": "policy_response_packet",
+      "degradation_state": "cache_degraded",
+      "receipt_id": "rcpt_47de05ff086b5168"
+    },
+    {
+      "case_id": "grounding_failure_safe",
+      "kind": "safe_failure",
+      "packet_class": "answer_packet",
+      "degradation_state": "safe_failure",
+      "receipt_id": "rcpt_f3145bc5cad7f9ca"
+    },
+    {
+      "case_id": "over_budget_safe",
+      "kind": "safe_failure",
+      "packet_class": "answer_packet",
+      "degradation_state": "safe_failure",
+      "receipt_id": "rcpt_b2b1dbf9848cc221"
+    }
+  ]
+}

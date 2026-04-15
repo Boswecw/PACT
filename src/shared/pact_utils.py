@@ -37,10 +37,10 @@ def add_seconds_to_timestamp(timestamp: str, seconds: int) -> str:
 def estimate_token_count(value: Any) -> int:
     if not isinstance(value, str):
         value = canonical_json(value)
-    rough = value.split()
-    if not rough:
+    compact = value.strip()
+    if not compact:
         return 0
-    return max(1, int(round(len(rough) * 1.3)))
+    return max(1, int(round(len(compact) / 4.0)))
 
 
 def ensure_string_list(value: Any) -> list[str]:

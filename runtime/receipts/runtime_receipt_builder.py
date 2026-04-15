@@ -15,6 +15,8 @@ def build_runtime_receipt(
     compile_validate_ms: int,
     retrieval_ms: int = 0,
     rerank_prune_ms: int = 0,
+    input_tokens: int | None = None,
+    naive_baseline_tokens: int | None = None,
 ) -> dict[str, Any]:
     normalized = normalized or {}
     packet_class = packet_or_failure.get("packet_class") or normalized.get("packet_class") or "answer_packet"
@@ -28,16 +30,20 @@ def build_runtime_receipt(
         "version_set",
         {
             "contract_version": "1.0.0",
-            "runtime_version": "slice_03",
+            "runtime_version": "slice_04",
             "corpus_version": "starter",
             "budget_version": "v1_lock",
             "compatibility_posture": "compatible",
         },
     )
 
-    input_tokens = estimate_token_count(packet_or_failure)
-    naive_baseline_tokens = max(input_tokens, input_tokens)
+    measured_tokens = estimate_token_count(packet_or_failure)
+    final_input_tokens = measured_tokens if input_tokens is None else input_tokens
+    naive_tokens = final_input_tokens if naive_baseline_tokens is None else naive_baseline_tokens
     reduction_percentage = 0.0
+    if naive_tokens > 0:
+        reduction_percentage = max(0.0, round(((naive_tokens - final_input_tokens) / naive_tokens) * 100.0, 2))
+
     total_pact_overhead_ms = retrieval_ms + rerank_prune_ms + compile_validate_ms
 
     seed = {
@@ -63,8 +69,8 @@ def build_runtime_receipt(
         "source_lineage_digest": source_lineage_digest,
         "packet_hash": packet_hash,
         "token_counts": {
-            "input_tokens": input_tokens,
-            "naive_baseline_tokens": naive_baseline_tokens,
+            "input_tokens": final_input_tokens,
+            "naive_baseline_tokens": naive_tokens,
             "reduction_percentage": reduction_percentage,
         },
         "latency_breakdown": {
