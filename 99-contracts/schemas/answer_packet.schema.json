@@ -7,8 +7,6 @@
       "$ref": "./packet_base.schema.json"
     },
     {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "PACT V1 Answer Packet Fields",
       "type": "object",
       "required": [
         "task_goal",
@@ -45,8 +43,8 @@
             "type": "string"
           }
         }
-      },
-      "additionalProperties": false
+      }
     }
-  ]
+  ],
+  "unevaluatedProperties": false
 }

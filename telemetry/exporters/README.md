@@ -1,3 +1,0 @@
-# telemetry exporters
-
-Exporter boundary.

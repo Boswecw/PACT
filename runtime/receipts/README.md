@@ -1,3 +1,0 @@
-# receipts
-
-Runtime receipt boundary.

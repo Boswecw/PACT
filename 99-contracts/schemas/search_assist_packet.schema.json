@@ -7,8 +7,6 @@
       "$ref": "./packet_base.schema.json"
     },
     {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "PACT V1 Search Assist Packet Fields",
       "type": "object",
       "required": [
         "search_goal",
@@ -68,8 +66,8 @@
           "type": "integer",
           "minimum": 0
         }
-      },
-      "additionalProperties": false
+      }
     }
-  ]
+  ],
+  "unevaluatedProperties": false
 }

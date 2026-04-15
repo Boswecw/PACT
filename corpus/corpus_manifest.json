@@ -1,9 +1,9 @@
 {
   "manifest_id": "pact-v1-corpus-manifest",
-  "schema_version": "0.1.0",
-  "status": "foundation_started",
+  "schema_version": "0.2.0",
+  "status": "foundation_running",
   "minimum_required_cases": 50,
-  "current_case_count": 10,
+  "current_case_count": 23,
   "class_targets": {
     "golden_success": 18,
     "degraded_safe": 8,
@@ -12,6 +12,7 @@
     "permission_boundary": 5,
     "over_budget": 4,
     "grounding_failure": 2,
+    "serialization_mismatch": 2,
     "adversarial_retrieval": 2
   },
   "packet_class_targets": {
@@ -27,8 +28,9 @@
     "cases/permission_boundary.jsonl",
     "cases/over_budget.jsonl",
     "cases/grounding_failure.jsonl",
+    "cases/serialization_mismatch.jsonl",
     "cases/adversarial_retrieval.jsonl"
   ],
   "source_index": "sources/source_set_index.json",
-  "notes": "Slice 01 seeds starter cases and structure only. Corpus remains below the V1 minimum floor."
+  "notes": "Slice 02 expands the starter corpus, introduces serialization mismatch coverage, and enforces early-floor class counts before runtime coding."
 }

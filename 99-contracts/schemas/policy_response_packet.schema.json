@@ -7,8 +7,6 @@
       "$ref": "./packet_base.schema.json"
     },
     {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "PACT V1 Policy Response Packet Fields",
       "type": "object",
       "required": [
         "policy_scope",
@@ -48,8 +46,8 @@
             "type": "string"
           }
         }
-      },
-      "additionalProperties": false
+      }
     }
-  ]
+  ],
+  "unevaluatedProperties": false
 }

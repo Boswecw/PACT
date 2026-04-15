@@ -1,3 +1,0 @@
-# cache
-
-Cache boundary.

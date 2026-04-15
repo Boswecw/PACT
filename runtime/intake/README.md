@@ -1,3 +1,0 @@
-# intake
-
-Request intake boundary.

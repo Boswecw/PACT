@@ -1,5 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bds.local/pact/v1/schemas/packet_base.schema.json",
   "title": "PACT V1 Packet Base",
   "type": "object",
   "required": [
@@ -115,7 +116,5 @@
       }
     }
   },
-  "additionalProperties": false,
-  "description": "Shared base contract for all V1 packet classes.",
-  "$id": "https://bds.local/pact/v1/schemas/packet_base.schema.json"
+  "description": "Shared base contract for all V1 packet classes."
 }

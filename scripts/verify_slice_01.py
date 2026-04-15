@@ -93,16 +93,12 @@ expected_degradation_states = {
     "safe_failure",
 }
 
-expected_case_files = [
-    "golden_success.jsonl",
-    "degraded_safe.jsonl",
-    "safe_failure.jsonl",
-    "malformed_invalid.jsonl",
-    "permission_boundary.jsonl",
-    "over_budget.jsonl",
-    "grounding_failure.jsonl",
-    "adversarial_retrieval.jsonl",
-]
+required_case_fields = {
+    "case_id","case_class","packet_class","request_input","consumer_identity",
+    "permission_context","source_set_ref","expected_outcome_type","expected_degradation_state",
+    "expected_model_call_allowed","expected_serialization_profile","expected_lineage_scope",
+    "expected_grounding_required","notes"
+}
 
 def fail(msg: str) -> None:
     print(f"VERIFY FAIL: {msg}")
@@ -163,32 +159,30 @@ for base_name in fixture_basenames:
 
 registry_path = ROOT / "99-contracts/registry/toon_segment_registry_v1.json"
 registry = load_json(registry_path)
-if not registry.get("row_definitions"):
-    fail("TOON registry data exists but has no row definitions")
+if "row_definitions" not in registry:
+    fail("TOON registry data exists but row_definitions is missing")
 
 manifest = load_json(ROOT / "corpus/corpus_manifest.json")
+case_files = manifest.get("case_files")
+if not isinstance(case_files, list) or not case_files:
+    fail("corpus_manifest.json case_files must be a non-empty list")
+
 current_case_count = 0
-for filename in expected_case_files:
-    path = ROOT / "corpus/cases" / filename
+for rel in case_files:
+    path = ROOT / "corpus" / rel
     if not path.exists():
-        fail(f"missing corpus case file: {filename}")
+        fail(f"missing corpus case file from manifest: {rel}")
     lines = [line for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
     if not lines:
-        fail(f"corpus case file is empty: {filename}")
+        fail(f"corpus case file is empty: {rel}")
     for idx, line in enumerate(lines, start=1):
         try:
             row = json.loads(line)
         except Exception as exc:
-            fail(f"{filename} line {idx} did not parse as JSON: {exc}")
-        required_case_fields = {
-            "case_id","case_class","packet_class","request_input","consumer_identity",
-            "permission_context","source_set_ref","expected_outcome_type","expected_degradation_state",
-            "expected_model_call_allowed","expected_serialization_profile","expected_lineage_scope",
-            "expected_grounding_required","notes"
-        }
+            fail(f"{rel} line {idx} did not parse as JSON: {exc}")
         missing = sorted(required_case_fields - set(row.keys()))
         if missing:
-            fail(f"{filename} line {idx} missing required fields: {missing}")
+            fail(f"{rel} line {idx} missing required fields: {missing}")
         current_case_count += 1
 
 if manifest.get("current_case_count") != current_case_count:

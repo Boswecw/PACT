@@ -1,3 +1,0 @@
-# compiler
-
-Packet compilation boundary.
