@@ -1,0 +1,58 @@
+{
+  "total_cases": 7,
+  "counts": {
+    "success": 3,
+    "safe_failure": 4
+  },
+  "results": [
+    {
+      "case_id": "answer_success",
+      "kind": "success",
+      "packet_class": "answer_packet",
+      "receipt_id": "rcpt_6f6167d225d461e1",
+      "packet_id": "pkt_234a67da4a1935d1"
+    },
+    {
+      "case_id": "policy_success",
+      "kind": "success",
+      "packet_class": "policy_response_packet",
+      "receipt_id": "rcpt_0f08d4d9aa020b9d",
+      "packet_id": "pkt_61e5be97d6069f98"
+    },
+    {
+      "case_id": "search_success",
+      "kind": "success",
+      "packet_class": "search_assist_packet",
+      "receipt_id": "rcpt_1ea5628d8ecae11c",
+      "packet_id": "pkt_557a76918a7f5186"
+    },
+    {
+      "case_id": "intake_permission_failure",
+      "kind": "safe_failure",
+      "packet_class": "answer_packet",
+      "receipt_id": "rcpt_96e3bb9a5ef8f348",
+      "packet_id": "fpkt_9b8a4eea99ad309f"
+    },
+    {
+      "case_id": "serialization_mismatch_failure",
+      "kind": "safe_failure",
+      "packet_class": "answer_packet",
+      "receipt_id": "rcpt_4a953e881f71ac70",
+      "packet_id": "fpkt_831274389c790bdd"
+    },
+    {
+      "case_id": "validation_failure_bad_grounding_ref",
+      "kind": "safe_failure",
+      "packet_class": "answer_packet",
+      "receipt_id": "rcpt_5a23649758ab474a",
+      "packet_id": "fpkt_f8486e4e1b5329b5"
+    },
+    {
+      "case_id": "validation_failure_missing_required_field",
+      "kind": "safe_failure",
+      "packet_class": "policy_response_packet",
+      "receipt_id": "rcpt_4646252be7640514",
+      "packet_id": "fpkt_b73324fa8629877f"
+    }
+  ]
+}
