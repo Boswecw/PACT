@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/packet_base.schema.json",
+  "title": "PacketBase",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "packet_id",
+    "packet_class",
+    "packet_revision",
+    "request_id",
+    "trace_id",
+    "consumer_identity",
+    "permission_context_digest",
+    "source_lineage_digest",
+    "serialization_profile",
+    "lifecycle_state",
+    "freshness_state",
+    "admissibility_state",
+    "created_at",
+    "expires_at",
+    "packet_hash",
+    "grounding_required",
+    "warnings",
+    "restrictions"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "packet_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "packet_class": {
+      "type": "string",
+      "enum": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ]
+    },
+    "packet_revision": {
+      "type": "string",
+      "pattern": "^rev-[a-z0-9._-]+$"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "consumer_identity": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "permission_context_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "source_lineage_digest": {
+      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/source_lineage_digest.schema.json"
+    },
+    "serialization_profile": {
+      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/serialization_profile_enum.schema.json"
+    },
+    "lifecycle_state": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "approved",
+        "blocked",
+        "retired"
+      ]
+    },
+    "freshness_state": {
+      "type": "string",
+      "enum": [
+        "fresh",
+        "review_due",
+        "stale",
+        "invalidated"
+      ]
+    },
+    "admissibility_state": {
+      "type": "string",
+      "enum": [
+        "admissible",
+        "admissible_with_warning",
+        "restricted",
+        "not_admissible"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "expires_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "packet_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "grounding_required": {
+      "type": "boolean"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "restrictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    }
+  },
+  "additionalProperties": true
+}

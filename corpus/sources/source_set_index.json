@@ -1,0 +1,16 @@
+{
+  "source_sets": [
+    {
+      "source_set_ref": "ss-answer-001",
+      "description": "Grounded answer source set for supported FAQ and records"
+    },
+    {
+      "source_set_ref": "ss-policy-001",
+      "description": "Policy source set with authoritative policy statements"
+    },
+    {
+      "source_set_ref": "ss-search-001",
+      "description": "Search result source set with ranked item rows"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "toon-segment-registry-v1",
+  "version": "v1.0.0",
+  "row_definitions": [
+    {
+      "row_definition_id": "search-result-row.v1",
+      "description": "Ranked search result row for search_assist_packet",
+      "columns": [
+        {
+          "name": "result_id",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "score",
+          "type": "number"
+        },
+        {
+          "name": "snippet",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "row_definition_id": "evidence-row.v1",
+      "description": "Grounded evidence table row for answer_packet",
+      "columns": [
+        {
+          "name": "source_ref",
+          "type": "string"
+        },
+        {
+          "name": "authority_level",
+          "type": "string"
+        },
+        {
+          "name": "excerpt",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

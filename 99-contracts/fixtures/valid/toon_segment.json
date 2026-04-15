@@ -1,0 +1,13 @@
+{
+  "segment_id": "seg-001",
+  "segment_version": "v1.0.0",
+  "row_definition_id": "search-result-row.v1",
+  "row_count": 2,
+  "source_lineage_digest": {
+    "algorithm": "sha256",
+    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "source_count": 2
+  },
+  "segment_hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "toon_payload": "@search-result-row.v1\nresult_id|title|score|snippet\nr1|Oak|0.98|Oak record\nr2|Pine|0.95|Pine record"
+}

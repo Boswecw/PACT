@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "packet_id": "pkt-001",
+  "packet_class": "search_assist_packet",
+  "packet_revision": "rev-pkt-v1",
+  "request_id": "req-001",
+  "trace_id": "trc-001",
+  "consumer_identity": "consumer-001",
+  "permission_context_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "source_lineage_digest": {
+    "algorithm": "sha256",
+    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "source_count": 2
+  },
+  "serialization_profile": "plain_text_with_toon_segment",
+  "lifecycle_state": "approved",
+  "freshness_state": "fresh",
+  "admissibility_state": "admissible",
+  "created_at": "2026-04-10T12:00:00Z",
+  "expires_at": "2026-04-10T12:30:00Z",
+  "packet_hash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "grounding_required": true,
+  "warnings": [
+    "bounded_context"
+  ],
+  "restrictions": [
+    "no_raw_policy_override"
+  ],
+  "search_goal": "Rank likely tree matches.",
+  "ranked_result_blocks": [
+    {
+      "result_id": "res-001",
+      "title": "White Oak",
+      "snippet": "Likely oak species.",
+      "score": 0.98,
+      "segment_ref": "seg-001"
+    }
+  ],
+  "selection_constraints": [
+    "prefer Kentucky native species"
+  ],
+  "grounding_refs": [
+    {
+      "source_ref": "src-001",
+      "excerpt": "A cited support excerpt.",
+      "excerpt_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "authority_level": "canonical"
+    }
+  ],
+  "result_count": 1
+}

@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/runtime_receipt.schema.json",
+  "title": "RuntimeReceipt",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "request_id",
+    "trace_id",
+    "packet_id",
+    "packet_class",
+    "version_set",
+    "retrieval_mode",
+    "pruning_mode",
+    "serialization_profile",
+    "degradation_state",
+    "source_lineage_digest",
+    "packet_hash",
+    "token_counts",
+    "latency_breakdown",
+    "model_call_allowed",
+    "safe_failure_invoked"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "packet_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "packet_class": {
+      "type": "string",
+      "enum": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ]
+    },
+    "version_set": {
+      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/version_set.schema.json"
+    },
+    "retrieval_mode": {
+      "type": "string",
+      "enum": [
+        "hybrid",
+        "lexical_only",
+        "vector_only"
+      ]
+    },
+    "pruning_mode": {
+      "type": "string",
+      "enum": [
+        "hierarchical",
+        "none",
+        "hierarchical_with_toon_segment"
+      ]
+    },
+    "serialization_profile": {
+      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/serialization_profile_enum.schema.json"
+    },
+    "degradation_state": {
+      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/degradation_state_enum.schema.json"
+    },
+    "source_lineage_digest": {
+      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/source_lineage_digest.schema.json"
+    },
+    "packet_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "token_counts": {
+      "type": "object",
+      "required": [
+        "final_input_tokens",
+        "naive_baseline_tokens",
+        "reduction_percentage"
+      ],
+      "properties": {
+        "final_input_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "naive_baseline_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reduction_percentage": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "latency_breakdown": {
+      "type": "object",
+      "required": [
+        "retrieval_ms",
+        "prune_ms",
+        "compile_validate_ms",
+        "total_pact_overhead_ms"
+      ],
+      "properties": {
+        "retrieval_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "prune_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "compile_validate_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "total_pact_overhead_ms": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "model_call_allowed": {
+      "type": "boolean"
+    },
+    "safe_failure_invoked": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

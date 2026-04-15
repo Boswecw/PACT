@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "pact_contract_version": "v1.0.0",
+  "retrieval_revision": "rev-hybrid-v1",
+  "pruning_revision": "rev-hier-v1",
+  "packet_revision": "rev-pkt-v1",
+  "serialization_registry_version": "v1.0.0"
+}

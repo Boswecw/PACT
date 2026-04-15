@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/source_lineage_digest.schema.json",
+  "title": "SourceLineageDigest",
+  "type": "object",
+  "required": [
+    "algorithm",
+    "digest",
+    "source_count"
+  ],
+  "properties": {
+    "algorithm": {
+      "type": "string",
+      "const": "sha256"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "source_count": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "additionalProperties": false
+}

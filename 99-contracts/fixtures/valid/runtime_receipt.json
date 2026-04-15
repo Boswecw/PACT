@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "rcpt-001",
+  "request_id": "req-001",
+  "trace_id": "trc-001",
+  "packet_id": "pkt-001",
+  "packet_class": "answer_packet",
+  "version_set": {
+    "schema_version": "1.0.0",
+    "pact_contract_version": "v1.0.0",
+    "retrieval_revision": "rev-hybrid-v1",
+    "pruning_revision": "rev-hier-v1",
+    "packet_revision": "rev-pkt-v1",
+    "serialization_registry_version": "v1.0.0"
+  },
+  "retrieval_mode": "hybrid",
+  "pruning_mode": "hierarchical_with_toon_segment",
+  "serialization_profile": "plain_text_with_toon_segment",
+  "degradation_state": "normal",
+  "source_lineage_digest": {
+    "algorithm": "sha256",
+    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "source_count": 2
+  },
+  "packet_hash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "token_counts": {
+    "final_input_tokens": 1200,
+    "naive_baseline_tokens": 2000,
+    "reduction_percentage": 40.0
+  },
+  "latency_breakdown": {
+    "retrieval_ms": 100,
+    "prune_ms": 80,
+    "compile_validate_ms": 50,
+    "total_pact_overhead_ms": 230
+  },
+  "model_call_allowed": true,
+  "safe_failure_invoked": false
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/version_set.schema.json",
+  "title": "VersionSet",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "pact_contract_version",
+    "retrieval_revision",
+    "pruning_revision",
+    "packet_revision",
+    "serialization_registry_version"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "pact_contract_version": {
+      "type": "string",
+      "pattern": "^v\\d+\\.\\d+\\.\\d+$"
+    },
+    "retrieval_revision": {
+      "type": "string",
+      "pattern": "^rev-[a-z0-9._-]+$"
+    },
+    "pruning_revision": {
+      "type": "string",
+      "pattern": "^rev-[a-z0-9._-]+$"
+    },
+    "packet_revision": {
+      "type": "string",
+      "pattern": "^rev-[a-z0-9._-]+$"
+    },
+    "serialization_registry_version": {
+      "type": "string",
+      "pattern": "^v\\d+\\.\\d+\\.\\d+$"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/cache_manifest_entry.schema.json",
+  "title": "CacheManifestEntry",
+  "type": "object",
+  "required": [
+    "entry_id",
+    "packet_class",
+    "permission_context_digest",
+    "source_lineage_digest",
+    "serialization_profile",
+    "version_set",
+    "packet_hash",
+    "created_at",
+    "expires_at"
+  ],
+  "properties": {
+    "entry_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "packet_class": {
+      "type": "string",
+      "enum": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ]
+    },
+    "permission_context_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "source_lineage_digest": {
+      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/source_lineage_digest.schema.json"
+    },
+    "serialization_profile": {
+      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/serialization_profile_enum.schema.json"
+    },
+    "version_set": {
+      "$ref": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/version_set.schema.json"
+    },
+    "packet_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "expires_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    }
+  },
+  "additionalProperties": false
+}

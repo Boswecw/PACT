@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/negative_constraint.schema.json",
+  "title": "NegativeConstraint",
+  "type": "object",
+  "required": [
+    "constraint_id",
+    "packet_class",
+    "constraint_type",
+    "reason_code",
+    "created_at",
+    "source_review_ref",
+    "active"
+  ],
+  "properties": {
+    "constraint_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "packet_class": {
+      "type": "string",
+      "enum": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ]
+    },
+    "constraint_type": {
+      "type": "string",
+      "enum": [
+        "content",
+        "budget",
+        "grounding",
+        "serialization",
+        "validation"
+      ]
+    },
+    "reason_code": {
+      "type": "string",
+      "enum": [
+        "missing_grounding_support",
+        "dropped_required_caution",
+        "over_budget_packet",
+        "irrelevant_context_preserved",
+        "unsafe_policy_simplification",
+        "serialization_mismatch",
+        "packet_validation_failure"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "source_review_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "superseded_by": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,22 @@
+{
+  "entry_id": "cache-001",
+  "packet_class": "answer_packet",
+  "permission_context_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "source_lineage_digest": {
+    "algorithm": "sha256",
+    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "source_count": 2
+  },
+  "serialization_profile": "plain_text_with_toon_segment",
+  "version_set": {
+    "schema_version": "1.0.0",
+    "pact_contract_version": "v1.0.0",
+    "retrieval_revision": "rev-hybrid-v1",
+    "pruning_revision": "rev-hier-v1",
+    "packet_revision": "rev-pkt-v1",
+    "serialization_registry_version": "v1.0.0"
+  },
+  "packet_hash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "created_at": "2026-04-10T12:00:00Z",
+  "expires_at": "later"
+}

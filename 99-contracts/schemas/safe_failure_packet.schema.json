@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file:///mnt/data/pact_v1_artifact_pack/pact/99-contracts/schemas/safe_failure_packet.schema.json",
+  "title": "SafeFailurePacket",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "failure_packet_id",
+    "request_id",
+    "trace_id",
+    "packet_class",
+    "failure_state",
+    "retry_allowed",
+    "operator_trace_ref",
+    "public_reason_code"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "failure_packet_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "packet_class": {
+      "type": "string",
+      "enum": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ]
+    },
+    "failure_state": {
+      "type": "string",
+      "enum": [
+        "validation_failure",
+        "grounding_failure",
+        "permission_failure",
+        "budget_failure",
+        "compile_failure",
+        "safe_failure"
+      ]
+    },
+    "retry_allowed": {
+      "type": "boolean"
+    },
+    "operator_trace_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "public_reason_code": {
+      "type": "string",
+      "enum": [
+        "temporarily_unavailable",
+        "cannot_answer_safely",
+        "request_not_permitted",
+        "request_too_large"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
