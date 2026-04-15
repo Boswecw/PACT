@@ -1,0 +1,13 @@
+{
+  "request_id": "req_8ef0dcf5925fbb9c",
+  "trace_id": "trace_cee4ebaabfd06c84",
+  "execution_mode": "replay",
+  "result_kind": "success",
+  "packet_class": "answer_packet",
+  "packet_id": "pkt_b5688d6beedb0bb4",
+  "receipt_id": "rcpt_e9c8c7122534668a",
+  "retrieval_provider_id": "replay_passthrough",
+  "cache_provider_id": "memory_cache",
+  "cache_status": "bypassed",
+  "retrieved_candidate_count": 2
+}

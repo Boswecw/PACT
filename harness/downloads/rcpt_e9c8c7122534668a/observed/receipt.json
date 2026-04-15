@@ -1,0 +1,38 @@
+{
+  "degradation_state": "normal",
+  "latency_breakdown": {
+    "compile_validate_ms": 4,
+    "rerank_prune_ms": 0,
+    "retrieval_ms": 0,
+    "total_pact_overhead_ms": 4
+  },
+  "model_call_allowed": true,
+  "packet_class": "answer_packet",
+  "packet_hash": "77457c0271d344a116fefd176cda9fc0db67c212b1edae9cedaef08c1bc665ae",
+  "packet_id": "pkt_b5688d6beedb0bb4",
+  "pruning_mode": "none",
+  "receipt_id": "rcpt_e9c8c7122534668a",
+  "request_id": "req_8ef0dcf5925fbb9c",
+  "retrieval_mode": "lexical_only",
+  "safe_failure_invoked": false,
+  "schema_version": "1.0.0",
+  "serialization_profile": "plain_text_only",
+  "source_lineage_digest": {
+    "digest": "5811829d23f43af0e9b6dbe0eb3a2e7525e908e70716065b072fdac2985f4fb5",
+    "digest_algorithm": "sha256",
+    "source_scope": "request"
+  },
+  "token_counts": {
+    "input_tokens": 340,
+    "naive_baseline_tokens": 107,
+    "reduction_percentage": 0.0
+  },
+  "trace_id": "trace_cee4ebaabfd06c84",
+  "version_set": {
+    "budget_version": "v1_lock",
+    "compatibility_posture": "compatible",
+    "contract_version": "1.0.0",
+    "corpus_version": "starter",
+    "runtime_version": "slice_06"
+  }
+}

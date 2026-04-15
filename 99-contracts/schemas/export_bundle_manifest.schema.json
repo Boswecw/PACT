@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PACT V1 Export Bundle Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "export_id",
+    "package_label",
+    "result_kind",
+    "request_id",
+    "trace_id",
+    "receipt_id",
+    "packet_id",
+    "packet_class",
+    "execution_mode",
+    "replay_package_filename",
+    "manifest_filename",
+    "replay_request_archive_path",
+    "version_set",
+    "source_lineage_digest",
+    "compatibility_posture",
+    "included_artifacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "export_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "package_label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "result_kind": {
+      "type": "string",
+      "enum": [
+        "success",
+        "safe_failure"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "receipt_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "packet_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "packet_class": {
+      "type": "string",
+      "enum": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ]
+    },
+    "execution_mode": {
+      "type": "string",
+      "enum": [
+        "replay",
+        "live"
+      ]
+    },
+    "replay_package_filename": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest_filename": {
+      "type": "string",
+      "minLength": 1
+    },
+    "replay_request_archive_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version_set": {
+      "$ref": "./version_set.schema.json"
+    },
+    "source_lineage_digest": {
+      "$ref": "./source_lineage_digest.schema.json"
+    },
+    "compatibility_posture": {
+      "type": "string",
+      "enum": [
+        "compatible",
+        "migration_required",
+        "incompatible"
+      ]
+    },
+    "included_artifacts": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "logical_name",
+          "archive_path",
+          "sha256"
+        ],
+        "properties": {
+          "logical_name": {
+            "type": "string",
+            "enum": [
+              "replay_request",
+              "packet",
+              "receipt",
+              "telemetry_report",
+              "telemetry_manifest",
+              "evidence_bundle"
+            ]
+          },
+          "archive_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "source_path": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/export_bundle_manifest.schema.json"
+}

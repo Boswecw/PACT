@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PACT V1 Operator API Request",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "action"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "catalog",
+        "detail",
+        "handoff",
+        "audit_transfer",
+        "run_index",
+        "run_audit_transfer"
+      ]
+    },
+    "receipt_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "receipt_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 8
+      }
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "packet_class": {
+      "type": "string",
+      "enum": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ]
+    },
+    "result_kind": {
+      "type": "string",
+      "enum": [
+        "success",
+        "safe_failure"
+      ]
+    },
+    "package_label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "handoff_dir": {
+      "type": "string",
+      "minLength": 1
+    },
+    "audit_dir": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"action": {"const": "detail"}}},
+      "then": {"required": ["receipt_id"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "handoff"}}},
+      "then": {"required": ["receipt_id"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "audit_transfer"}}},
+      "then": {"required": ["receipt_ids"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "run_audit_transfer"}}},
+      "then": {"required": ["run_id"]}
+    }
+  ],
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/operator_api_request.schema.json"
+}

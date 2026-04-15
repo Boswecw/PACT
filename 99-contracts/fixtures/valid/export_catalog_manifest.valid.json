@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "export_dir": "harness/exports",
+  "bundle_count": 2,
+  "entries": [
+    {
+      "export_id": "exp_11111111aaaa",
+      "receipt_id": "rcpt_11111111aaaa",
+      "request_id": "req_11111111aaaa",
+      "trace_id": "trace_11111111aaaa",
+      "packet_class": "answer_packet",
+      "result_kind": "success",
+      "execution_mode": "replay",
+      "package_label": "operator_replay",
+      "compatibility_posture": "compatible",
+      "manifest_filename": "slice_07_export_manifest_rcpt_11111111aaaa.json",
+      "replay_package_filename": "slice_07_replay_package_rcpt_11111111aaaa.zip",
+      "manifest_path": "harness/exports/slice_07_export_manifest_rcpt_11111111aaaa.json",
+      "replay_package_path": "harness/exports/slice_07_replay_package_rcpt_11111111aaaa.zip"
+    },
+    {
+      "export_id": "exp_22222222bbbb",
+      "receipt_id": "rcpt_22222222bbbb",
+      "request_id": "req_22222222bbbb",
+      "trace_id": "trace_22222222bbbb",
+      "packet_class": "policy_response_packet",
+      "result_kind": "safe_failure",
+      "execution_mode": "live",
+      "package_label": "operator_replay",
+      "compatibility_posture": "compatible",
+      "manifest_filename": "slice_07_export_manifest_rcpt_22222222bbbb.json",
+      "replay_package_filename": "slice_07_replay_package_rcpt_22222222bbbb.zip",
+      "manifest_path": "harness/exports/slice_07_export_manifest_rcpt_22222222bbbb.json",
+      "replay_package_path": "harness/exports/slice_07_replay_package_rcpt_22222222bbbb.zip"
+    }
+  ]
+}

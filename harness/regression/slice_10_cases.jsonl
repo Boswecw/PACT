@@ -1,0 +1,4 @@
+{"case_id": "operator_api_catalog_current_run", "action": "catalog", "expect": {"result_count": 4}}
+{"case_id": "operator_api_detail_success", "action": "detail", "lookup_case_id": "registry_live_export_success", "expect": {"result_kind": "success", "packet_class": "policy_response_packet"}}
+{"case_id": "operator_api_handoff_success", "action": "handoff", "lookup_case_id": "replay_export_success", "expect": {"packet_class": "answer_packet"}}
+{"case_id": "operator_api_audit_transfer_current_run", "action": "audit_transfer", "expect": {"receipt_count": 4, "artifact_count": 13}}

@@ -1,0 +1,34 @@
+{
+  "generated_from_report": "harness/regression/slice_07_verification_report.json",
+  "run_count": 1,
+  "runs": [
+    {
+      "case_ids": [
+        "provider_ref_missing_export_safe",
+        "registry_cache_hit_export_success",
+        "registry_live_export_success",
+        "replay_export_success"
+      ],
+      "export_manifest_count": 4,
+      "packet_classes": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ],
+      "receipt_count": 4,
+      "receipt_ids": [
+        "rcpt_8a3e24f3de7506b1",
+        "rcpt_bb355d9c41e2ca11",
+        "rcpt_d18e33cda28dc140",
+        "rcpt_e9c8c7122534668a"
+      ],
+      "result_kinds": [
+        "safe_failure",
+        "success"
+      ],
+      "run_id": "run_set_5d14f89e194cbff3",
+      "source_report_path": "harness/regression/slice_07_verification_report.json"
+    }
+  ],
+  "schema_version": "1.0.0"
+}

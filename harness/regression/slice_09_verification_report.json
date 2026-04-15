@@ -1,0 +1,30 @@
+{
+  "total_cases": 4,
+  "counts": {
+    "catalog": 1,
+    "detail": 2,
+    "handoff": 1
+  },
+  "catalog_query_result_count": 4,
+  "results": [
+    {
+      "case_id": "catalog_query_current_run",
+      "result_count": 4
+    },
+    {
+      "case_id": "detail_query_success",
+      "receipt_id": "rcpt_8a3e24f3de7506b1",
+      "result_kind": "success"
+    },
+    {
+      "case_id": "detail_query_safe_failure",
+      "receipt_id": "rcpt_d18e33cda28dc140",
+      "result_kind": "safe_failure"
+    },
+    {
+      "case_id": "handoff_query_success",
+      "receipt_id": "rcpt_e9c8c7122534668a",
+      "handoff_manifest_path": "/home/charlie/Forge/ecosystem/pact/harness/handoffs/slice_09_handoff_manifest_rcpt_e9c8c7122534668a.json"
+    }
+  ]
+}

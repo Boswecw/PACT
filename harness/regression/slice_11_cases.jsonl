@@ -1,0 +1,4 @@
+{"case_id": "run_export_index_build", "action": "run_index", "expect": {"run_count": 1, "receipt_count": 4}}
+{"case_id": "operator_api_run_index", "action": "operator_run_index", "expect": {"run_count": 1}}
+{"case_id": "operator_api_run_audit_transfer", "action": "run_audit_transfer", "expect": {"receipt_count": 4, "artifact_count": 14}}
+{"case_id": "operator_api_manual_audit_transfer_compat", "action": "manual_audit_transfer", "expect": {"receipt_count": 4, "artifact_count": 13}}

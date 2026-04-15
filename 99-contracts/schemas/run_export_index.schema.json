@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PACT V1 Run Export Index",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_from_report",
+    "run_count",
+    "runs"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "generated_from_report": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "runs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "run_id",
+          "source_report_path",
+          "receipt_count",
+          "receipt_ids",
+          "case_ids",
+          "packet_classes",
+          "result_kinds",
+          "export_manifest_count"
+        ],
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "minLength": 8
+          },
+          "source_report_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "receipt_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "receipt_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 8
+            }
+          },
+          "case_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "packet_classes": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "answer_packet",
+                "policy_response_packet",
+                "search_assist_packet"
+              ]
+            }
+          },
+          "result_kinds": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "success",
+                "safe_failure"
+              ]
+            }
+          },
+          "export_manifest_count": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/run_export_index.schema.json"
+}

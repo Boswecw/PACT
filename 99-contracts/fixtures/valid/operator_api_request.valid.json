@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "action": "run_audit_transfer",
+  "run_id": "run_set_11111111aaaa",
+  "handoff_dir": "harness/handoffs",
+  "audit_dir": "harness/audit"
+}

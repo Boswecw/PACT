@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "export_id": "exp_bad",
+  "package_label": "operator_replay",
+  "result_kind": "success",
+  "request_id": "req_bad",
+  "trace_id": "trace_bad",
+  "receipt_id": "rcpt_bad",
+  "packet_id": "pkt_bad",
+  "packet_class": "answer_packet",
+  "execution_mode": "replay",
+  "replay_package_filename": "slice_07_replay_package_rcpt_bad.zip",
+  "manifest_filename": "slice_07_export_manifest_rcpt_bad.json",
+  "replay_request_archive_path": "replay/request.json",
+  "version_set": {
+    "contract_version": "1.0.0",
+    "runtime_version": "slice_07",
+    "corpus_version": "starter",
+    "budget_version": "v1_lock",
+    "compatibility_posture": "compatible"
+  },
+  "source_lineage_digest": {
+    "digest_algorithm": "sha256",
+    "digest": "1111111111111111",
+    "source_scope": "request"
+  },
+  "compatibility_posture": "compatible",
+  "included_artifacts": [
+    {
+      "logical_name": "replay_request",
+      "archive_path": "replay/request.json",
+      "sha256": "not-a-sha"
+    }
+  ]
+}

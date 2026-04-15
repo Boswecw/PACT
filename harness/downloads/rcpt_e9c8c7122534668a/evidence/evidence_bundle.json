@@ -1,0 +1,22 @@
+{
+  "request_id": "req_8ef0dcf5925fbb9c",
+  "trace_id": "trace_cee4ebaabfd06c84",
+  "execution_mode": "replay",
+  "packet_class": "answer_packet",
+  "packet_id": "pkt_b5688d6beedb0bb4",
+  "receipt_id": "rcpt_e9c8c7122534668a",
+  "result_kind": "success",
+  "candidate_refs": [
+    "doc://replay/a",
+    "doc://replay/b"
+  ],
+  "telemetry_path": "/home/charlie/Forge/ecosystem/pact/harness/telemetry/slice_06_runtime_report_rcpt_e9c8c7122534668a.json",
+  "manifest_path": "/home/charlie/Forge/ecosystem/pact/harness/telemetry/slice_06_manifest.json",
+  "telemetry_context": {
+    "execution_mode": "replay",
+    "retrieval_provider_id": "replay_passthrough",
+    "cache_provider_id": "memory_cache",
+    "cache_status": "bypassed",
+    "retrieved_candidate_count": 2
+  }
+}

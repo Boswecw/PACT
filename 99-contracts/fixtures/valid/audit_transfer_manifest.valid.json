@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "transfer_id": "audit_transfer_11111111aaaa",
+  "request_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "run_id": "run_set_11111111aaaa",
+  "source_run_index_filename": "slice_11_run_export_index.json",
+  "receipt_ids": [
+    "rcpt_11111111aaaa",
+    "rcpt_22222222bbbb"
+  ],
+  "artifact_count": 8,
+  "transfer_bundle_filename": "slice_10_audit_transfer_a.zip",
+  "transfer_catalog_filename": "slice_10_transfer_catalog_a.json",
+  "included_artifacts": [
+    {
+      "artifact_kind": "catalog",
+      "relative_path": "catalog/export_catalog.json",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "artifact_kind": "run_index",
+      "relative_path": "run_index/run_export_index.json",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ]
+}

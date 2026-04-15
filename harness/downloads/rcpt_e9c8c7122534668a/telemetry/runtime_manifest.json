@@ -23,14 +23,6 @@
       "result_kind": "success",
       "packet_class": "answer_packet",
       "telemetry_path": "/home/charlie/Forge/ecosystem/pact/harness/telemetry/slice_06_runtime_report_rcpt_e9c8c7122534668a.json"
-    },
-    {
-      "request_id": "req_60091c2a4cab3b5d",
-      "receipt_id": "rcpt_d18e33cda28dc140",
-      "trace_id": "trace_bca86669607b23d1",
-      "result_kind": "safe_failure",
-      "packet_class": "policy_response_packet",
-      "telemetry_path": "/home/charlie/Forge/ecosystem/pact/harness/telemetry/slice_06_runtime_report_rcpt_d18e33cda28dc140.json"
     }
   ]
 }

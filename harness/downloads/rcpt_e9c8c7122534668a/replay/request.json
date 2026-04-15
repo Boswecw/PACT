@@ -1,0 +1,37 @@
+{
+  "compile_input": {
+    "answer_constraints": [
+      "Stay grounded"
+    ]
+  },
+  "consumer_identity": "authorforge",
+  "emit_telemetry": true,
+  "evidence_dir": "harness/evidence",
+  "execution_mode": "replay",
+  "packet_class": "answer_packet",
+  "permission_context": {
+    "scope": "workspace",
+    "tenant": "demo"
+  },
+  "retrieval_goal": "Answer from replay inputs.",
+  "retrieval_input": [
+    {
+      "authority_class": "primary",
+      "content": "replay evidence alpha",
+      "lexical_score": 0.9,
+      "source_ref": "doc://replay/a",
+      "title": "doc://replay/a",
+      "vector_score": 0.0
+    },
+    {
+      "authority_class": "secondary",
+      "content": "replay evidence beta",
+      "lexical_score": 0.8,
+      "source_ref": "doc://replay/b",
+      "title": "doc://replay/b",
+      "vector_score": 0.0
+    }
+  ],
+  "retrieval_mode": "lexical_only",
+  "telemetry_dir": "harness/telemetry"
+}

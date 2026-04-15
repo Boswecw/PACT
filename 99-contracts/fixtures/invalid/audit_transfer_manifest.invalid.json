@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "transfer_id": "audit_transfer_bad",
+  "request_digest": "bad",
+  "receipt_ids": [],
+  "artifact_count": 0,
+  "transfer_bundle_filename": "x.zip",
+  "transfer_catalog_filename": "x.json",
+  "included_artifacts": []
+}

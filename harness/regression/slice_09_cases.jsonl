@@ -1,0 +1,4 @@
+{"case_id": "catalog_query_current_run", "action": "catalog", "expect": {"result_count": 4, "package_label": "operator_replay"}}
+{"case_id": "detail_query_success", "action": "detail", "lookup_case_id": "registry_live_export_success", "expect": {"result_kind": "success", "packet_class": "policy_response_packet"}}
+{"case_id": "detail_query_safe_failure", "action": "detail", "lookup_case_id": "provider_ref_missing_export_safe", "expect": {"result_kind": "safe_failure", "packet_class": "policy_response_packet"}}
+{"case_id": "handoff_query_success", "action": "handoff", "lookup_case_id": "replay_export_success", "expect": {"packet_class": "answer_packet"}}

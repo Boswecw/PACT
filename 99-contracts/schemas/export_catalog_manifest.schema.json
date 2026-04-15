@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PACT V1 Export Catalog Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "export_dir",
+    "bundle_count",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "export_dir": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bundle_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "export_id",
+          "receipt_id",
+          "request_id",
+          "trace_id",
+          "packet_class",
+          "result_kind",
+          "execution_mode",
+          "package_label",
+          "compatibility_posture",
+          "manifest_filename",
+          "replay_package_filename",
+          "manifest_path",
+          "replay_package_path"
+        ],
+        "properties": {
+          "export_id": {
+            "type": "string",
+            "minLength": 8
+          },
+          "receipt_id": {
+            "type": "string",
+            "minLength": 8
+          },
+          "request_id": {
+            "type": "string",
+            "minLength": 8
+          },
+          "trace_id": {
+            "type": "string",
+            "minLength": 8
+          },
+          "packet_class": {
+            "type": "string",
+            "enum": [
+              "answer_packet",
+              "policy_response_packet",
+              "search_assist_packet"
+            ]
+          },
+          "result_kind": {
+            "type": "string",
+            "enum": [
+              "success",
+              "safe_failure"
+            ]
+          },
+          "execution_mode": {
+            "type": "string",
+            "enum": [
+              "replay",
+              "live"
+            ]
+          },
+          "package_label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "compatibility_posture": {
+            "type": "string",
+            "enum": [
+              "compatible",
+              "migration_required",
+              "incompatible"
+            ]
+          },
+          "manifest_filename": {
+            "type": "string",
+            "minLength": 1
+          },
+          "replay_package_filename": {
+            "type": "string",
+            "minLength": 1
+          },
+          "manifest_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "replay_package_path": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/export_catalog_manifest.schema.json"
+}

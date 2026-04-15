@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PACT V1 Operator API Response",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "action",
+    "ok",
+    "request_digest"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "catalog",
+        "detail",
+        "handoff",
+        "audit_transfer",
+        "run_index",
+        "run_audit_transfer"
+      ]
+    },
+    "ok": {
+      "type": "boolean",
+      "const": true
+    },
+    "request_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "result_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "./export_catalog_manifest.schema.json#/properties/entries/items"
+      }
+    },
+    "detail": {
+      "$ref": "./export_control_plane_response.schema.json#/properties/detail"
+    },
+    "handoff": {
+      "$ref": "./export_control_plane_response.schema.json#/properties/handoff"
+    },
+    "run_index": {
+      "type": "object",
+      "required": [
+        "index_path",
+        "run_count",
+        "runs"
+      ],
+      "properties": {
+        "index_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "runs": {
+          "$ref": "./run_export_index.schema.json#/properties/runs"
+        }
+      },
+      "additionalProperties": false
+    },
+    "audit_transfer": {
+      "type": "object",
+      "required": [
+        "transfer_id",
+        "transfer_manifest_path",
+        "transfer_bundle_path",
+        "artifact_count",
+        "receipt_ids"
+      ],
+      "properties": {
+        "transfer_id": {
+          "type": "string",
+          "minLength": 8
+        },
+        "transfer_manifest_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_bundle_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "receipt_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 8
+          }
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 8
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"action": {"const": "catalog"}}},
+      "then": {"required": ["result_count", "results"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "detail"}}},
+      "then": {"required": ["detail"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "handoff"}}},
+      "then": {"required": ["handoff"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "audit_transfer"}}},
+      "then": {"required": ["audit_transfer"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "run_index"}}},
+      "then": {"required": ["run_index"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "run_audit_transfer"}}},
+      "then": {"required": ["audit_transfer"]}
+    }
+  ],
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/operator_api_response.schema.json"
+}

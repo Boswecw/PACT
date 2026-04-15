@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "handoff_id": "handoff_bad",
+  "receipt_id": "rcpt_bad",
+  "export_id": "exp_bad",
+  "package_label": "operator_replay",
+  "packet_class": "not_a_packet",
+  "result_kind": "success",
+  "compatibility_posture": "compatible",
+  "source_manifest_path": "x",
+  "source_replay_package_path": "y",
+  "copied_replay_package_path": "z",
+  "replay_package_filename": "file.zip",
+  "replay_package_sha256": "bad"
+}

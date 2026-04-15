@@ -1,0 +1,30 @@
+{
+  "total_cases": 4,
+  "counts": {
+    "catalog": 1,
+    "detail": 1,
+    "handoff": 1,
+    "audit_transfer": 1
+  },
+  "results": [
+    {
+      "case_id": "operator_api_catalog_current_run",
+      "result_count": 4
+    },
+    {
+      "case_id": "operator_api_detail_success",
+      "receipt_id": "rcpt_8a3e24f3de7506b1",
+      "result_kind": "success"
+    },
+    {
+      "case_id": "operator_api_handoff_success",
+      "receipt_id": "rcpt_e9c8c7122534668a",
+      "handoff_manifest_path": "/home/charlie/Forge/ecosystem/pact/harness/handoffs/slice_09_handoff_manifest_rcpt_e9c8c7122534668a.json"
+    },
+    {
+      "case_id": "operator_api_audit_transfer_current_run",
+      "transfer_bundle_path": "/home/charlie/Forge/ecosystem/pact/harness/audit/slice_10_audit_transfer_audit_transfer_39def786044b74c7.zip",
+      "artifact_count": 13
+    }
+  ]
+}

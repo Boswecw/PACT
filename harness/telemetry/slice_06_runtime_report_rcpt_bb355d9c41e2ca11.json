@@ -1,0 +1,13 @@
+{
+  "request_id": "req_c17f4d20ebf9fa48",
+  "trace_id": "trace_46b53f0ac7d87d7c",
+  "execution_mode": "live",
+  "result_kind": "success",
+  "packet_class": "search_assist_packet",
+  "packet_id": "pkt_b41862d60ed898ff",
+  "receipt_id": "rcpt_bb355d9c41e2ca11",
+  "retrieval_provider_id": "live_memory",
+  "cache_provider_id": "memory_cache",
+  "cache_status": "hit",
+  "retrieved_candidate_count": 2
+}

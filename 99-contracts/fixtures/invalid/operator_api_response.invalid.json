@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "action": "run_index",
+  "ok": true,
+  "request_digest": "bad",
+  "run_index": {
+    "index_path": "x",
+    "run_count": 0,
+    "runs": []
+  }
+}

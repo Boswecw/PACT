@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PACT V1 Export Control Plane Response",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "action",
+    "ok",
+    "query_digest"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "catalog",
+        "detail",
+        "handoff"
+      ]
+    },
+    "ok": {
+      "type": "boolean",
+      "const": true
+    },
+    "query_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "result_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "./export_catalog_manifest.schema.json#/properties/entries/items"
+      }
+    },
+    "detail": {
+      "type": "object",
+      "required": [
+        "receipt_id",
+        "result_kind",
+        "packet_class",
+        "manifest_path",
+        "replay_package_path"
+      ],
+      "properties": {
+        "receipt_id": {
+          "type": "string",
+          "minLength": 8
+        },
+        "result_kind": {
+          "type": "string",
+          "enum": [
+            "success",
+            "safe_failure"
+          ]
+        },
+        "packet_class": {
+          "type": "string",
+          "enum": [
+            "answer_packet",
+            "policy_response_packet",
+            "search_assist_packet"
+          ]
+        },
+        "manifest_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "replay_package_path": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "handoff": {
+      "type": "object",
+      "required": [
+        "receipt_id",
+        "handoff_manifest_path",
+        "copied_replay_package_path",
+        "replay_package_sha256"
+      ],
+      "properties": {
+        "receipt_id": {
+          "type": "string",
+          "minLength": 8
+        },
+        "handoff_manifest_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "copied_replay_package_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "replay_package_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"action": {"const": "catalog"}}},
+      "then": {"required": ["result_count", "results"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "detail"}}},
+      "then": {"required": ["detail"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "handoff"}}},
+      "then": {"required": ["handoff"]}
+    }
+  ],
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/export_control_plane_response.schema.json"
+}

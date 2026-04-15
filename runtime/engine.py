@@ -16,6 +16,7 @@ from runtime.compiler.packet_compiler import PacketCompileError, compile_packet,
 from runtime.compiler.packet_base_builder import finalize_packet_hash
 from runtime.compiler.safe_failure_builder import build_safe_failure_packet
 from runtime.evidence.exporter import emit_evidence_bundle
+from runtime.export.control_plane_adapter import maybe_emit_control_plane_bundle
 from runtime.intake.request_normalizer import IntakeNormalizationError, normalize_request
 from runtime.receipts.runtime_receipt_builder import build_runtime_receipt
 from runtime.retrieval.pruning_engine import (
@@ -510,3 +511,19 @@ def execute_slice_05(request: dict[str, Any]) -> dict[str, Any]:
 
 def execute_slice_06(request: dict[str, Any]) -> dict[str, Any]:
     return _execute_live_or_replay(request)
+
+def execute_slice_07(request: dict[str, Any]) -> dict[str, Any]:
+    result = execute_slice_06(request)
+    try:
+        export_artifacts = maybe_emit_control_plane_bundle(ROOT_DIR, request, result)
+    except Exception as exc:  # pragma: no cover - bounded export hardening surface
+        result["control_plane_export_ok"] = False
+        result["control_plane_export_error"] = str(exc)
+        return result
+
+    if export_artifacts:
+        result.update(export_artifacts)
+        result["control_plane_export_ok"] = True
+
+    return result
+

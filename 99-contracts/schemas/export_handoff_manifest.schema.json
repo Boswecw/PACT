@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PACT V1 Export Handoff Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "handoff_id",
+    "receipt_id",
+    "export_id",
+    "package_label",
+    "packet_class",
+    "result_kind",
+    "compatibility_posture",
+    "source_manifest_path",
+    "source_replay_package_path",
+    "copied_replay_package_path",
+    "replay_package_filename",
+    "replay_package_sha256"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "handoff_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "receipt_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "export_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "package_label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "packet_class": {
+      "type": "string",
+      "enum": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ]
+    },
+    "result_kind": {
+      "type": "string",
+      "enum": [
+        "success",
+        "safe_failure"
+      ]
+    },
+    "compatibility_posture": {
+      "type": "string",
+      "enum": [
+        "compatible",
+        "migration_required",
+        "incompatible"
+      ]
+    },
+    "source_manifest_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_replay_package_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "copied_replay_package_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "replay_package_filename": {
+      "type": "string",
+      "minLength": 1
+    },
+    "replay_package_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/export_handoff_manifest.schema.json"
+}

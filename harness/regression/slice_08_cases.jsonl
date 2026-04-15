@@ -1,0 +1,4 @@
+{"case_id": "catalog_lists_all_exports", "action": "catalog", "expect": {"bundle_count": 4, "package_label": "operator_replay"}}
+{"case_id": "detail_reads_success_bundle", "action": "detail", "lookup_case_id": "registry_live_export_success", "expect": {"kind": "success", "packet_class": "policy_response_packet"}}
+{"case_id": "detail_reads_safe_failure_bundle", "action": "detail", "lookup_case_id": "provider_ref_missing_export_safe", "expect": {"kind": "safe_failure", "packet_class": "policy_response_packet"}}
+{"case_id": "download_extracts_bundle", "action": "download", "lookup_case_id": "replay_export_success", "expect": {"required_members": ["manifest/export_bundle_manifest.json", "observed/packet.json", "observed/receipt.json", "replay/request.json"]}}

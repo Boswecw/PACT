@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "action": "catalog",
+  "ok": true,
+  "query_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "result_count": 1,
+  "results": [
+    {
+      "export_id": "exp_11111111aaaa",
+      "receipt_id": "rcpt_11111111aaaa",
+      "request_id": "req_11111111aaaa",
+      "trace_id": "trace_11111111aaaa",
+      "packet_class": "answer_packet",
+      "result_kind": "success",
+      "execution_mode": "replay",
+      "package_label": "operator_replay",
+      "compatibility_posture": "compatible",
+      "manifest_filename": "slice_07_export_manifest_rcpt_11111111aaaa.json",
+      "replay_package_filename": "slice_07_replay_package_rcpt_11111111aaaa.zip",
+      "manifest_path": "harness/exports/slice_07_export_manifest_rcpt_11111111aaaa.json",
+      "replay_package_path": "harness/exports/slice_07_replay_package_rcpt_11111111aaaa.zip"
+    }
+  ]
+}
