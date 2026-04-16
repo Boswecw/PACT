@@ -57,6 +57,10 @@ Thumbs.db
 harness/audit/
 harness/handoffs/
 harness/exports/
+harness/downloads/
+harness/evidence/
+harness/exports_repeat/
+harness/telemetry/
 
 # Optional local replay/package noise if created during runs
 harness/**/*.zip

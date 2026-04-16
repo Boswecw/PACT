@@ -1,0 +1,7 @@
+# PACT dev/runtime verification dependencies
+# Bounded rather than exact-pinned because the current repo state did not
+# include an existing dependency lock file to anchor exact versions.
+
+jsonschema>=4.23,<5
+referencing>=0.35,<1
+mypy>=1.20,<2
