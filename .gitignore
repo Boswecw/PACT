@@ -1,0 +1,79 @@
+# -------------------------------------------------------------------
+# PACT - root .gitignore
+# Governance note:
+# - Keep canonical docs and governed proof artifacts tracked when intended
+# - Ignore ephemeral local runtime/output noise only
+# -------------------------------------------------------------------
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Type checking / test / coverage caches ---
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# --- Build / packaging ---
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# --- Logs / temp ---
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS noise ---
+.DS_Store
+Thumbs.db
+
+# -------------------------------------------------------------------
+# PACT local generated runtime artifacts
+# These are run-generated and should not be committed.
+# -------------------------------------------------------------------
+harness/audit/
+harness/handoffs/
+harness/exports/
+
+# Optional local replay/package noise if created during runs
+harness/**/*.zip
+
+# -------------------------------------------------------------------
+# Local environment / secrets
+# Keep local-only env files out of git.
+# -------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# -------------------------------------------------------------------
+# Intentionally NOT ignored:
+# - doc/PACSYSTEM.md
+# - doc/system/
+# - 99-contracts/schema_validation_report.json
+# - corpus/corpus_lint_report.json
+# - locked schemas, fixtures, manifests, and docs
+# -------------------------------------------------------------------
