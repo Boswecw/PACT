@@ -1,0 +1,66 @@
+{
+  "bundle_root": "harness/audit/runs/run_set_4f8dd89349cfb07b",
+  "compatibility_posture": "compatible",
+  "compatibility_posture_counts": {
+    "compatible": 4,
+    "incompatible": 0,
+    "migration_required": 0
+  },
+  "degradation_state_counts": {
+    "cache_degraded": 0,
+    "minimum_viable_packet": 0,
+    "normal": 3,
+    "pruning_degraded": 0,
+    "rerank_degraded": 0,
+    "retrieval_degraded": 0,
+    "safe_failure": 1
+  },
+  "execution_mode_counts": {
+    "live": 3,
+    "replay": 1
+  },
+  "export_package_id": "run_export_summary_8e11af1223d05125",
+  "included_paths": [
+    "transfer/run_audit_transfer_bundle.zip",
+    "transfer/audit_transfer_manifest.json",
+    "summary/audit_summary.md",
+    "registry/export_registry_record.json"
+  ],
+  "model_call_allowed_counts": {
+    "allowed": 3,
+    "blocked": 1
+  },
+  "package_artifact_count": 4,
+  "packet_class_counts": {
+    "answer_packet": 1,
+    "policy_response_packet": 2,
+    "search_assist_packet": 1
+  },
+  "receipt_count": 4,
+  "receipt_ids": [
+    "rcpt_0990c0414b9fec53",
+    "rcpt_1ae7ddadb1e68689",
+    "rcpt_83c93bd52dc41068",
+    "rcpt_c9d30156e36fd002"
+  ],
+  "record_type": "run_export_summary_package",
+  "request_digest": "2770039d0acfea0cd880d36b6542373863d599531a6e13706cb833f9dba4ea1e",
+  "result_kind_counts": {
+    "safe_failure": 1,
+    "success": 3
+  },
+  "run_id": "run_set_4f8dd89349cfb07b",
+  "safe_failure_invoked_count": 1,
+  "schema_version": "1.0.0",
+  "source_run_index_path": "harness/audit/slice_11_run_export_index.json",
+  "source_scopes": [
+    "request"
+  ],
+  "source_transfer_bundle_path": "harness/audit/slice_10_audit_transfer_audit_transfer_f53923a4992f26db.zip",
+  "source_transfer_manifest_path": "harness/audit/slice_10_audit_transfer_manifest_audit_transfer_f53923a4992f26db.json",
+  "summary_manifest_path": "harness/audit/runs/run_set_4f8dd89349cfb07b/slice_12_run_export_summary_package_manifest_run_export_summary_8e11af1223d05125.json",
+  "summary_package_path": "harness/audit/runs/run_set_4f8dd89349cfb07b/slice_12_run_export_summary_package_run_export_summary_8e11af1223d05125.zip",
+  "summary_path": "harness/audit/runs/run_set_4f8dd89349cfb07b/slice_12_audit_summary_run_export_summary_8e11af1223d05125.md",
+  "transfer_artifact_count": 14,
+  "transfer_id": "audit_transfer_f53923a4992f26db"
+}

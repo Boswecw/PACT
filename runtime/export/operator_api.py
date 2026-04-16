@@ -8,6 +8,7 @@ from src.shared.pact_utils import canonical_json, sha256_hex
 
 from .audit_transfer import build_audit_transfer_bundle
 from .control_plane_surface import query_export_surface
+from .run_export_summary_package import build_run_export_summary_package
 from .run_index import build_run_export_index, resolve_run_receipts
 
 
@@ -109,6 +110,36 @@ def handle_operator_request(
                 "artifact_count": transfer["transfer_manifest"]["artifact_count"],
                 "receipt_ids": transfer["transfer_manifest"]["receipt_ids"],
                 "run_id": request["run_id"],
+            },
+        }
+        validate_instance(normalized, "operator_api_response.schema.json")
+        return normalized
+
+    if action == "run_export_summary_package":
+        package = build_run_export_summary_package(
+            root,
+            request,
+            export_dir=export_dir,
+            handoff_dir=request.get("handoff_dir", handoff_dir),
+            audit_dir=request.get("audit_dir", audit_dir),
+        )
+        manifest = package["summary_manifest"]
+        normalized = {
+            **_response_base(request),
+            "run_export_summary_package": {
+                "export_package_id": manifest["export_package_id"],
+                "package_root_path": package["package_root"],
+                "summary_manifest_path": package["summary_manifest_path"],
+                "summary_package_path": package["summary_package_path"],
+                "summary_path": package["summary_path"],
+                "registry_record_path": package["registry_record_path"],
+                "transfer_id": manifest["transfer_id"],
+                "run_id": manifest["run_id"],
+                "receipt_ids": manifest["receipt_ids"],
+                "receipt_count": len(manifest["receipt_ids"]),
+                "artifact_count": manifest["artifact_count"],
+                "source_transfer_bundle_path": manifest["source_transfer_bundle_path"],
+                "source_transfer_manifest_path": manifest["source_transfer_manifest_path"],
             },
         }
         validate_instance(normalized, "operator_api_response.schema.json")

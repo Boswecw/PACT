@@ -19,7 +19,8 @@
         "handoff",
         "audit_transfer",
         "run_index",
-        "run_audit_transfer"
+        "run_audit_transfer",
+        "run_export_summary_package"
       ]
     },
     "receipt_id": {
@@ -29,30 +30,15 @@
     "receipt_ids": {
       "type": "array",
       "minItems": 1,
-      "uniqueItems": true,
       "items": {
         "type": "string",
         "minLength": 8
-      }
+      },
+      "uniqueItems": true
     },
     "run_id": {
       "type": "string",
       "minLength": 8
-    },
-    "packet_class": {
-      "type": "string",
-      "enum": [
-        "answer_packet",
-        "policy_response_packet",
-        "search_assist_packet"
-      ]
-    },
-    "result_kind": {
-      "type": "string",
-      "enum": [
-        "success",
-        "safe_failure"
-      ]
     },
     "package_label": {
       "type": "string",
@@ -69,20 +55,74 @@
   },
   "allOf": [
     {
-      "if": {"properties": {"action": {"const": "detail"}}},
-      "then": {"required": ["receipt_id"]}
+      "if": {
+        "properties": {
+          "action": {
+            "const": "detail"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "receipt_id"
+        ]
+      }
     },
     {
-      "if": {"properties": {"action": {"const": "handoff"}}},
-      "then": {"required": ["receipt_id"]}
+      "if": {
+        "properties": {
+          "action": {
+            "const": "handoff"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "receipt_id"
+        ]
+      }
     },
     {
-      "if": {"properties": {"action": {"const": "audit_transfer"}}},
-      "then": {"required": ["receipt_ids"]}
+      "if": {
+        "properties": {
+          "action": {
+            "const": "audit_transfer"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "receipt_ids"
+        ]
+      }
     },
     {
-      "if": {"properties": {"action": {"const": "run_audit_transfer"}}},
-      "then": {"required": ["run_id"]}
+      "if": {
+        "properties": {
+          "action": {
+            "const": "run_audit_transfer"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "run_id"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "const": "run_export_summary_package"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "run_id"
+        ]
+      }
     }
   ],
   "additionalProperties": false,

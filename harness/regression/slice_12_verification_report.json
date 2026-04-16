@@ -1,0 +1,37 @@
+{
+  "manual_audit_transfer_compat": 1,
+  "operator_run_export_summary_package": 1,
+  "results": [
+    {
+      "case_id": "run_export_summary_package_build",
+      "export_package_id": "run_export_summary_8e11af1223d05125",
+      "package_artifact_count": 4,
+      "receipt_count": 4,
+      "summary_package_path": "/home/charlie/Forge/ecosystem/pact/harness/audit/runs/run_set_4f8dd89349cfb07b/slice_12_run_export_summary_package_run_export_summary_8e11af1223d05125.zip",
+      "transfer_artifact_count": 14
+    },
+    {
+      "artifact_count": 4,
+      "case_id": "operator_api_run_export_summary_package",
+      "export_package_id": "run_export_summary_8e11af1223d05125",
+      "receipt_count": 4,
+      "summary_package_path": "/home/charlie/Forge/ecosystem/pact/harness/audit/runs/run_set_4f8dd89349cfb07b/slice_12_run_export_summary_package_run_export_summary_8e11af1223d05125.zip"
+    },
+    {
+      "artifact_count": 14,
+      "case_id": "operator_api_run_audit_transfer_compat",
+      "receipt_count": 4,
+      "transfer_id": "audit_transfer_f53923a4992f26db"
+    },
+    {
+      "artifact_count": 13,
+      "case_id": "operator_api_manual_audit_transfer_compat",
+      "receipt_count": 4,
+      "transfer_id": "audit_transfer_e4eb7e2055455358"
+    }
+  ],
+  "run_audit_transfer_compat": 1,
+  "run_export_summary_package": 1,
+  "slice": 12,
+  "total_cases": 4
+}

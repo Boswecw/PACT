@@ -6,9 +6,9 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from jsonschema import FormatChecker
-from jsonschema.validators import validator_for
-from referencing import Registry, Resource
+from jsonschema import FormatChecker  # type: ignore[import-untyped]
+from jsonschema.validators import validator_for  # type: ignore[import-untyped]
+from referencing import Registry, Resource  # type: ignore[import-not-found]
 
 SCHEMA_DIR = Path(__file__).resolve().parents[2] / "99-contracts" / "schemas"
 
@@ -49,7 +49,7 @@ def validate_instance(instance: dict[str, Any], schema_filename: str) -> None:
     )
     errors = sorted(validator.iter_errors(instance), key=lambda e: list(e.path))
     if errors:
-        messages = []
+        messages: list[str] = []
         for error in errors[:5]:
             path = ".".join(str(part) for part in error.path) or "<root>"
             messages.append(f"{path}: {error.message}")

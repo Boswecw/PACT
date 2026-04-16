@@ -1,0 +1,52 @@
+{
+  "admissibility_state": "admissible",
+  "answer_constraints": [
+    "Stay grounded"
+  ],
+  "consumer_identity": "authorforge",
+  "created_at": "2026-04-15T23:55:22Z",
+  "expires_at": "2026-04-16T00:00:22Z",
+  "freshness_state": "fresh",
+  "grounding_refs": [
+    {
+      "authority_class": "primary",
+      "end_offset": 21,
+      "excerpt": "replay evidence alpha",
+      "grounding_id": "g_2e782502a980503a",
+      "source_ref": "doc://replay/a",
+      "start_offset": 0
+    },
+    {
+      "authority_class": "secondary",
+      "end_offset": 20,
+      "excerpt": "replay evidence beta",
+      "grounding_id": "g_52ea9e02e49efedc",
+      "source_ref": "doc://replay/b",
+      "start_offset": 0
+    }
+  ],
+  "grounding_required": true,
+  "instruction_block": "Use only selected grounded material.",
+  "lifecycle_state": "admitted",
+  "packet_class": "answer_packet",
+  "packet_hash": "99b00c59b6c48caf7d762faf76cb779261b61054bae4e965b975ac4a4b69cdab",
+  "packet_id": "pkt_5c890593e9c1c0e8",
+  "packet_revision": 1,
+  "permission_context_digest": "8403f00873a3ced21734ec2809ff25db1eaf6d58702f77403b3124f6375f69e0",
+  "request_id": "req_8ef0dcf5925fbb9c",
+  "restrictions": [],
+  "schema_version": "1.0.0",
+  "serialization_profile": "plain_text_only",
+  "source_lineage_digest": {
+    "digest": "5811829d23f43af0e9b6dbe0eb3a2e7525e908e70716065b072fdac2985f4fb5",
+    "digest_algorithm": "sha256",
+    "source_scope": "request"
+  },
+  "support_blocks": [
+    "replay evidence alpha",
+    "replay evidence beta"
+  ],
+  "task_goal": "Answer from replay inputs.",
+  "trace_id": "trace_3558d79acfc22daa",
+  "warnings": []
+}

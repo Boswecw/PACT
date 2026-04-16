@@ -5,29 +5,29 @@
     "detail": 2,
     "download": 1
   },
-  "catalog_total_entries": 5,
+  "catalog_total_entries": 4,
   "current_run_bundle_count": 4,
   "catalog_path": "/home/charlie/Forge/ecosystem/pact/harness/exports/slice_08_export_catalog.json",
   "results": [
     {
       "case_id": "catalog_lists_all_exports",
       "bundle_count": 4,
-      "catalog_total_entries": 5
+      "catalog_total_entries": 4
     },
     {
       "case_id": "detail_reads_success_bundle",
-      "receipt_id": "rcpt_8a3e24f3de7506b1",
+      "receipt_id": "rcpt_83c93bd52dc41068",
       "result_kind": "success"
     },
     {
       "case_id": "detail_reads_safe_failure_bundle",
-      "receipt_id": "rcpt_d18e33cda28dc140",
+      "receipt_id": "rcpt_1ae7ddadb1e68689",
       "result_kind": "safe_failure"
     },
     {
       "case_id": "download_extracts_bundle",
-      "receipt_id": "rcpt_e9c8c7122534668a",
-      "copied_replay_package_path": "/home/charlie/Forge/ecosystem/pact/harness/downloads/slice_07_replay_package_rcpt_e9c8c7122534668a.zip"
+      "receipt_id": "rcpt_c9d30156e36fd002",
+      "copied_replay_package_path": "/home/charlie/Forge/ecosystem/pact/harness/downloads/slice_07_replay_package_rcpt_c9d30156e36fd002.zip"
     }
   ]
 }

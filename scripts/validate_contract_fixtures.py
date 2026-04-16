@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
-from jsonschema import Draft202012Validator
-from referencing import Registry, Resource
+from jsonschema import Draft202012Validator  # type: ignore[import-untyped]
+from referencing import Registry, Resource  # type: ignore[import-not-found]
 
 ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_DIR = ROOT / "99-contracts" / "schemas"
@@ -29,49 +30,61 @@ SCHEMA_FILES = [
     "cache_manifest_entry.schema.json",
 ]
 
-def load_json(path: Path):
+
+def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
-def normalize_refs(node, base_uri: str):
+
+def normalize_refs(node: Any, base_uri: str) -> Any:
     if isinstance(node, dict):
-        out = {}
+        out: dict[str, Any] = {}
         for k, v in node.items():
             if k == "$ref" and isinstance(v, str) and v.startswith("./"):
                 out[k] = f"{base_uri}/{v[2:]}"
             else:
                 out[k] = normalize_refs(v, base_uri)
         return out
+
     if isinstance(node, list):
         return [normalize_refs(x, base_uri) for x in node]
+
     return node
 
-def load_normalized_schemas():
-    normalized = {}
+
+def load_normalized_schemas() -> dict[str, dict[str, Any]]:
+    normalized: dict[str, dict[str, Any]] = {}
     for filename in SCHEMA_FILES:
         raw = load_json(SCHEMA_DIR / filename)
+        if not isinstance(raw, dict):
+            raise RuntimeError(f"{filename} did not load as an object")
+
         schema_id = raw.get("$id")
-        if not schema_id:
+        if not isinstance(schema_id, str) or not schema_id:
             raise RuntimeError(f"{filename} missing $id")
+
         base_uri = schema_id.rsplit("/", 1)[0]
         normalized[schema_id] = normalize_refs(raw, base_uri)
     return normalized
 
-def make_registry(normalized: dict[str, dict]) -> Registry:
+
+def make_registry(normalized: dict[str, dict[str, Any]]) -> Registry:
     registry = Registry()
-    pairs = []
+    pairs: list[tuple[str, Resource[Any]]] = []
     for uri, schema in normalized.items():
         pairs.append((uri, Resource.from_contents(schema)))
     return registry.with_resources(pairs)
 
-def validate_one(validator, fixture_path: Path):
+
+def validate_one(validator: Any, fixture_path: Path) -> tuple[Any, list[Any]]:
     data = load_json(fixture_path)
     errors = sorted(validator.iter_errors(data), key=lambda e: list(e.absolute_path))
     return data, errors
 
+
 def main() -> int:
     normalized = load_normalized_schemas()
     registry = make_registry(normalized)
-    summary = {
+    summary: dict[str, Any] = {
         "schema_bundle_version": "1.0.0",
         "report_kind": "fixture_validation",
         "valid_passed": [],
@@ -82,6 +95,9 @@ def main() -> int:
 
     for filename in SCHEMA_FILES:
         original = load_json(SCHEMA_DIR / filename)
+        if not isinstance(original, dict):
+            raise RuntimeError(f"{filename} did not load as an object")
+
         schema_id = original["$id"]
         schema = normalized[schema_id]
         validator = Draft202012Validator(schema, registry=registry)
@@ -93,7 +109,11 @@ def main() -> int:
 
         for expected_path in [valid_path, invalid_path, edge_path]:
             if not expected_path.exists():
-                summary["failures"].append({"schema": filename, "path": str(expected_path), "reason": "missing_fixture"})
+                summary["failures"].append({
+                    "schema": filename,
+                    "path": str(expected_path),
+                    "reason": "missing_fixture",
+                })
                 continue
 
         if valid_path.exists():
@@ -147,6 +167,7 @@ def main() -> int:
 
     print("CONTRACT FIXTURE VALIDATION PASSED")
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

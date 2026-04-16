@@ -1,0 +1,10 @@
+{
+  "request_id": "req_60091c2a4cab3b5d",
+  "trace_id": "trace_aefb8c1321bdfc65",
+  "execution_mode": "live",
+  "result_kind": "safe_failure",
+  "packet_class": "policy_response_packet",
+  "packet_id": null,
+  "receipt_id": "rcpt_1ae7ddadb1e68689",
+  "cache_status": "provider_error"
+}

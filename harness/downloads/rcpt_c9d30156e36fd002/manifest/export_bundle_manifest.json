@@ -1,0 +1,63 @@
+{
+  "compatibility_posture": "compatible",
+  "execution_mode": "replay",
+  "export_id": "exp_10e5eeaf9bb7ceb6",
+  "included_artifacts": [
+    {
+      "archive_path": "evidence/evidence_bundle.json",
+      "logical_name": "evidence_bundle",
+      "sha256": "d35bb771e1cfcc19c6346833fa7b8de84f2289421c83de2bd47e495dd92c4a8a",
+      "source_path": "harness/evidence/slice_06_evidence_rcpt_c9d30156e36fd002.json"
+    },
+    {
+      "archive_path": "observed/packet.json",
+      "logical_name": "packet",
+      "sha256": "4837711bee57f31324699c81346be4b2ce310632d9dcad27295cb3bdebb1d669"
+    },
+    {
+      "archive_path": "observed/receipt.json",
+      "logical_name": "receipt",
+      "sha256": "291fa36cc0f23a85ced7e857118eecffb1b770270c0bd61d9ee83718b806bea9"
+    },
+    {
+      "archive_path": "replay/request.json",
+      "logical_name": "replay_request",
+      "sha256": "d5985e62d6c32bb63f02e20c9c2a52b6f6ac944090dace672ebbb14241047797"
+    },
+    {
+      "archive_path": "telemetry/runtime_manifest.json",
+      "logical_name": "telemetry_manifest",
+      "sha256": "060d47a1fa73125d5a9c81b91512e280f45673f2a56a4380721180f1482a99ce",
+      "source_path": "harness/telemetry/slice_06_manifest.json"
+    },
+    {
+      "archive_path": "telemetry/runtime_report.json",
+      "logical_name": "telemetry_report",
+      "sha256": "6a00005ecfa73624f3c2c5cbfaac48686a1478b633900b0247cc111a4b29f36a",
+      "source_path": "harness/telemetry/slice_06_runtime_report_rcpt_c9d30156e36fd002.json"
+    }
+  ],
+  "manifest_filename": "slice_07_export_manifest_rcpt_c9d30156e36fd002.json",
+  "package_label": "operator_replay",
+  "packet_class": "answer_packet",
+  "packet_id": "pkt_5c890593e9c1c0e8",
+  "receipt_id": "rcpt_c9d30156e36fd002",
+  "replay_package_filename": "slice_07_replay_package_rcpt_c9d30156e36fd002.zip",
+  "replay_request_archive_path": "replay/request.json",
+  "request_id": "req_8ef0dcf5925fbb9c",
+  "result_kind": "success",
+  "schema_version": "1.0.0",
+  "source_lineage_digest": {
+    "digest": "5811829d23f43af0e9b6dbe0eb3a2e7525e908e70716065b072fdac2985f4fb5",
+    "digest_algorithm": "sha256",
+    "source_scope": "request"
+  },
+  "trace_id": "trace_3558d79acfc22daa",
+  "version_set": {
+    "budget_version": "v1_lock",
+    "compatibility_posture": "compatible",
+    "contract_version": "1.0.0",
+    "corpus_version": "starter",
+    "runtime_version": "slice_06"
+  }
+}

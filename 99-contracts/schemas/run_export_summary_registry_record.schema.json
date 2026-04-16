@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PACT V1 Run Export Summary Registry Record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "export_package_id",
+    "run_id",
+    "transfer_id",
+    "request_digest",
+    "compatibility_posture",
+    "source_run_index_path",
+    "source_transfer_bundle_path",
+    "source_transfer_manifest_path",
+    "bundle_root",
+    "summary_path",
+    "summary_manifest_path",
+    "summary_package_path",
+    "receipt_count",
+    "transfer_artifact_count",
+    "package_artifact_count",
+    "receipt_ids",
+    "source_scopes",
+    "packet_class_counts",
+    "result_kind_counts",
+    "execution_mode_counts",
+    "degradation_state_counts",
+    "model_call_allowed_counts",
+    "safe_failure_invoked_count",
+    "compatibility_posture_counts",
+    "included_paths"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "type": "string",
+      "const": "run_export_summary_package"
+    },
+    "export_package_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "transfer_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "request_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "compatibility_posture": {
+      "type": "string",
+      "enum": [
+        "compatible",
+        "migration_required",
+        "incompatible"
+      ]
+    },
+    "source_run_index_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_transfer_bundle_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_transfer_manifest_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bundle_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary_manifest_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary_package_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "receipt_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "transfer_artifact_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "package_artifact_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "receipt_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 8
+      }
+    },
+    "source_scopes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "packet_class_counts": {
+      "type": "object",
+      "required": [
+        "answer_packet",
+        "policy_response_packet",
+        "search_assist_packet"
+      ],
+      "properties": {
+        "answer_packet": {"type": "integer", "minimum": 0},
+        "policy_response_packet": {"type": "integer", "minimum": 0},
+        "search_assist_packet": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "result_kind_counts": {
+      "type": "object",
+      "required": [
+        "success",
+        "safe_failure"
+      ],
+      "properties": {
+        "success": {"type": "integer", "minimum": 0},
+        "safe_failure": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "execution_mode_counts": {
+      "type": "object",
+      "required": [
+        "live",
+        "replay"
+      ],
+      "properties": {
+        "live": {"type": "integer", "minimum": 0},
+        "replay": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "degradation_state_counts": {
+      "type": "object",
+      "required": [
+        "normal",
+        "retrieval_degraded",
+        "rerank_degraded",
+        "pruning_degraded",
+        "cache_degraded",
+        "minimum_viable_packet",
+        "safe_failure"
+      ],
+      "properties": {
+        "normal": {"type": "integer", "minimum": 0},
+        "retrieval_degraded": {"type": "integer", "minimum": 0},
+        "rerank_degraded": {"type": "integer", "minimum": 0},
+        "pruning_degraded": {"type": "integer", "minimum": 0},
+        "cache_degraded": {"type": "integer", "minimum": 0},
+        "minimum_viable_packet": {"type": "integer", "minimum": 0},
+        "safe_failure": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "model_call_allowed_counts": {
+      "type": "object",
+      "required": [
+        "allowed",
+        "blocked"
+      ],
+      "properties": {
+        "allowed": {"type": "integer", "minimum": 0},
+        "blocked": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "safe_failure_invoked_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "compatibility_posture_counts": {
+      "type": "object",
+      "required": [
+        "compatible",
+        "migration_required",
+        "incompatible"
+      ],
+      "properties": {
+        "compatible": {"type": "integer", "minimum": 0},
+        "migration_required": {"type": "integer", "minimum": 0},
+        "incompatible": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "included_paths": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://bds.local/pact/v1/schemas/run_export_summary_registry_record.schema.json"
+}

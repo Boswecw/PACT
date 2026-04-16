@@ -1,0 +1,15 @@
+{
+  "compatibility_posture": "compatible",
+  "copied_replay_package_path": "/home/charlie/Forge/ecosystem/pact/harness/handoffs/slice_07_replay_package_rcpt_1ae7ddadb1e68689.zip",
+  "export_id": "exp_8d4e7850c0759740",
+  "handoff_id": "handoff_fa3e17b0ed1ae96a",
+  "package_label": "operator_replay",
+  "packet_class": "policy_response_packet",
+  "receipt_id": "rcpt_1ae7ddadb1e68689",
+  "replay_package_filename": "slice_07_replay_package_rcpt_1ae7ddadb1e68689.zip",
+  "replay_package_sha256": "57428301bee2e41d54d0bf84f1ff0f964dcd1d5b78f16d7c83ab566466c532ae",
+  "result_kind": "safe_failure",
+  "schema_version": "1.0.0",
+  "source_manifest_path": "/home/charlie/Forge/ecosystem/pact/harness/exports/slice_07_export_manifest_rcpt_1ae7ddadb1e68689.json",
+  "source_replay_package_path": "/home/charlie/Forge/ecosystem/pact/harness/exports/slice_07_replay_package_rcpt_1ae7ddadb1e68689.zip"
+}

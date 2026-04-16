@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from collections import Counter
 from pathlib import Path
+from typing import Any
 import sys
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -22,24 +23,30 @@ REQUIRED_CASE_FILES = [
 ]
 
 REQUIRED_FIELDS = {
-    "case_id","case_class","packet_class","request_input","consumer_identity",
-    "permission_context","source_set_ref","expected_outcome_type","expected_degradation_state",
-    "expected_model_call_allowed","expected_serialization_profile","expected_lineage_scope",
-    "expected_grounding_required","notes"
+    "case_id", "case_class", "packet_class", "request_input", "consumer_identity",
+    "permission_context", "source_set_ref", "expected_outcome_type", "expected_degradation_state",
+    "expected_model_call_allowed", "expected_serialization_profile", "expected_lineage_scope",
+    "expected_grounding_required", "notes",
 }
+
 
 def fail(msg: str) -> int:
     print(f"CORPUS LINT FAIL: {msg}")
     return 1
 
+
 def main() -> int:
-    manifest = json.loads((CORPUS_DIR / "corpus_manifest.json").read_text(encoding="utf-8"))
-    source_index = json.loads((CORPUS_DIR / "sources" / "source_set_index.json").read_text(encoding="utf-8"))
+    manifest: dict[str, Any] = json.loads(
+        (CORPUS_DIR / "corpus_manifest.json").read_text(encoding="utf-8")
+    )
+    source_index: dict[str, Any] = json.loads(
+        (CORPUS_DIR / "sources" / "source_set_index.json").read_text(encoding="utf-8")
+    )
     allowed_source_refs = {x["source_set_ref"] for x in source_index["source_sets"]}
 
-    counts = Counter()
-    packet_counts = Counter()
-    failures = []
+    counts: Counter[str] = Counter()
+    packet_counts: Counter[str] = Counter()
+    failures: list[str] = []
     total = 0
 
     for filename in REQUIRED_CASE_FILES:
@@ -47,24 +54,29 @@ def main() -> int:
         if not path.exists():
             failures.append(f"missing required case file: {filename}")
             continue
+
         lines = [line for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
         if not lines:
             failures.append(f"case file is empty: {filename}")
             continue
+
         for idx, line in enumerate(lines, start=1):
             try:
-                row = json.loads(line)
+                row: dict[str, Any] = json.loads(line)
             except Exception as exc:
                 failures.append(f"{filename} line {idx} invalid JSON: {exc}")
                 continue
+
             missing = sorted(REQUIRED_FIELDS - set(row.keys()))
             if missing:
                 failures.append(f"{filename} line {idx} missing fields: {missing}")
                 continue
+
             if row["source_set_ref"] not in allowed_source_refs:
                 failures.append(f"{filename} line {idx} unknown source_set_ref: {row['source_set_ref']}")
-            counts[row["case_class"]] += 1
-            packet_counts[row["packet_class"]] += 1
+
+            counts[str(row["case_class"])] += 1
+            packet_counts[str(row["packet_class"])] += 1
             total += 1
 
     if counts["golden_success"] < 10:
@@ -104,6 +116,7 @@ def main() -> int:
 
     print("CORPUS LINT PASSED")
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

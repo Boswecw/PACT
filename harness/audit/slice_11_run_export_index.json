@@ -17,16 +17,16 @@
       ],
       "receipt_count": 4,
       "receipt_ids": [
-        "rcpt_8a3e24f3de7506b1",
-        "rcpt_bb355d9c41e2ca11",
-        "rcpt_d18e33cda28dc140",
-        "rcpt_e9c8c7122534668a"
+        "rcpt_0990c0414b9fec53",
+        "rcpt_1ae7ddadb1e68689",
+        "rcpt_83c93bd52dc41068",
+        "rcpt_c9d30156e36fd002"
       ],
       "result_kinds": [
         "safe_failure",
         "success"
       ],
-      "run_id": "run_set_5d14f89e194cbff3",
+      "run_id": "run_set_4f8dd89349cfb07b",
       "source_report_path": "harness/regression/slice_07_verification_report.json"
     }
   ],

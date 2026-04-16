@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "run_export_summary_package",
+  "export_package_id": "run_export_summary_11111111aaaa",
+  "run_id": "run_set_11111111aaaa",
+  "transfer_id": "audit_transfer_11111111aaaa",
+  "request_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "compatibility_posture": "compatible",
+  "source_run_index_path": "harness/audit/slice_11_run_export_index.json",
+  "source_transfer_bundle_path": "harness/audit/slice_10_audit_transfer_audit_transfer_11111111aaaa.zip",
+  "source_transfer_manifest_path": "harness/audit/slice_10_audit_transfer_manifest_audit_transfer_11111111aaaa.json",
+  "bundle_root": "harness/audit/runs/run_set_11111111aaaa",
+  "summary_path": "harness/audit/runs/run_set_11111111aaaa/slice_12_audit_summary_run_export_summary_11111111aaaa.md",
+  "summary_manifest_path": "harness/audit/runs/run_set_11111111aaaa/slice_12_run_export_summary_package_manifest_run_export_summary_11111111aaaa.json",
+  "summary_package_path": "harness/audit/runs/run_set_11111111aaaa/slice_12_run_export_summary_package_run_export_summary_11111111aaaa.zip",
+  "receipt_count": 2,
+  "transfer_artifact_count": 8,
+  "package_artifact_count": 4,
+  "receipt_ids": [
+    "rcpt_11111111aaaa",
+    "rcpt_22222222bbbb"
+  ],
+  "source_scopes": [
+    "request"
+  ],
+  "packet_class_counts": {
+    "answer_packet": 1,
+    "policy_response_packet": 1,
+    "search_assist_packet": 0
+  },
+  "result_kind_counts": {
+    "success": 1,
+    "safe_failure": 1
+  },
+  "execution_mode_counts": {
+    "live": 1,
+    "replay": 1
+  },
+  "degradation_state_counts": {
+    "normal": 1,
+    "retrieval_degraded": 0,
+    "rerank_degraded": 0,
+    "pruning_degraded": 0,
+    "cache_degraded": 0,
+    "minimum_viable_packet": 0,
+    "safe_failure": 1
+  },
+  "model_call_allowed_counts": {
+    "allowed": 1
+  },
+  "safe_failure_invoked_count": 1,
+  "compatibility_posture_counts": {
+    "compatible": 2,
+    "migration_required": 0,
+    "incompatible": 0
+  },
+  "included_paths": [
+    "transfer/run_audit_transfer_bundle.zip",
+    "transfer/audit_transfer_manifest.json",
+    "summary/audit_summary.md",
+    "registry/export_registry_record.json"
+  ]
+}

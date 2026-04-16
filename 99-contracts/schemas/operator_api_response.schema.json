@@ -21,7 +21,8 @@
         "handoff",
         "audit_transfer",
         "run_index",
-        "run_audit_transfer"
+        "run_audit_transfer",
+        "run_export_summary_package"
       ]
     },
     "ok": {
@@ -111,6 +112,84 @@
         }
       },
       "additionalProperties": false
+    },
+    "run_export_summary_package": {
+      "type": "object",
+      "required": [
+        "export_package_id",
+        "package_root_path",
+        "summary_manifest_path",
+        "summary_package_path",
+        "summary_path",
+        "registry_record_path",
+        "transfer_id",
+        "run_id",
+        "receipt_ids",
+        "receipt_count",
+        "artifact_count",
+        "source_transfer_bundle_path",
+        "source_transfer_manifest_path"
+      ],
+      "properties": {
+        "export_package_id": {
+          "type": "string",
+          "minLength": 8
+        },
+        "package_root_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary_manifest_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary_package_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "registry_record_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_id": {
+          "type": "string",
+          "minLength": 8
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 8
+        },
+        "receipt_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 8
+          }
+        },
+        "receipt_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "artifact_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_transfer_bundle_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_transfer_manifest_path": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
     }
   },
   "allOf": [
@@ -137,6 +216,10 @@
     {
       "if": {"properties": {"action": {"const": "run_audit_transfer"}}},
       "then": {"required": ["audit_transfer"]}
+    },
+    {
+      "if": {"properties": {"action": {"const": "run_export_summary_package"}}},
+      "then": {"required": ["run_export_summary_package"]}
     }
   ],
   "additionalProperties": false,
