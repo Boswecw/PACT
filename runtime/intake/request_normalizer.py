@@ -91,6 +91,93 @@ def _normalize_adapter_config(value: Any) -> dict[str, Any]:
     return value
 
 
+def _normalize_optional_nonempty_string(value: Any, field_name: str) -> str | None:
+    if value is None:
+        return None
+    if not isinstance(value, str) or not value.strip():
+        raise IntakeNormalizationError(
+            f"{field_name} must be a non-empty string when provided",
+            public_reason_code="validation_failed",
+        )
+    return value.strip()
+
+
+def _normalize_context_bundle_manifest(value: Any) -> dict[str, Any] | None:
+    if value is None:
+        return None
+    if not isinstance(value, dict) or not value:
+        raise IntakeNormalizationError(
+            "context_bundle_manifest must be a non-empty object when provided",
+            public_reason_code="validation_failed",
+        )
+    return value
+
+
+def _resolve_context_connectivity_fields(request: dict[str, Any]) -> tuple[str | None, str | None, str | None, dict[str, Any] | None]:
+    manifest = _normalize_context_bundle_manifest(request.get("context_bundle_manifest"))
+    manifest_task_intent_id = _normalize_optional_nonempty_string(
+        manifest.get("task_intent_id") if manifest else None,
+        "context_bundle_manifest.task_intent_id",
+    )
+    manifest_bundle_id = _normalize_optional_nonempty_string(
+        manifest.get("context_bundle_id") if manifest else None,
+        "context_bundle_manifest.context_bundle_id",
+    )
+    manifest_bundle_hash = _normalize_optional_nonempty_string(
+        manifest.get("bundle_hash") if manifest else None,
+        "context_bundle_manifest.bundle_hash",
+    )
+
+    task_intent_id = _normalize_optional_nonempty_string(request.get("task_intent_id"), "task_intent_id")
+    context_bundle_id = _normalize_optional_nonempty_string(request.get("context_bundle_id"), "context_bundle_id")
+    context_bundle_hash = _normalize_optional_nonempty_string(request.get("context_bundle_hash"), "context_bundle_hash")
+
+    if task_intent_id and manifest_task_intent_id and task_intent_id != manifest_task_intent_id:
+        raise IntakeNormalizationError(
+            "task_intent_id does not match context_bundle_manifest.task_intent_id",
+            public_reason_code="validation_failed",
+        )
+    if context_bundle_id and manifest_bundle_id and context_bundle_id != manifest_bundle_id:
+        raise IntakeNormalizationError(
+            "context_bundle_id does not match context_bundle_manifest.context_bundle_id",
+            public_reason_code="validation_failed",
+        )
+    if context_bundle_hash and manifest_bundle_hash and context_bundle_hash != manifest_bundle_hash:
+        raise IntakeNormalizationError(
+            "context_bundle_hash does not match context_bundle_manifest.bundle_hash",
+            public_reason_code="validation_failed",
+        )
+
+    resolved_task_intent_id = task_intent_id or manifest_task_intent_id
+    resolved_context_bundle_id = context_bundle_id or manifest_bundle_id
+    resolved_context_bundle_hash = context_bundle_hash or manifest_bundle_hash
+
+    if (resolved_context_bundle_id or resolved_context_bundle_hash) and not resolved_task_intent_id:
+        raise IntakeNormalizationError(
+            "task_intent_id is required when context bundle connectivity fields are provided",
+            public_reason_code="validation_failed",
+        )
+
+    if resolved_context_bundle_id and not resolved_context_bundle_hash:
+        raise IntakeNormalizationError(
+            "context_bundle_hash is required when context_bundle_id is provided",
+            public_reason_code="validation_failed",
+        )
+
+    if resolved_context_bundle_hash and not resolved_context_bundle_id:
+        raise IntakeNormalizationError(
+            "context_bundle_id is required when context_bundle_hash is provided",
+            public_reason_code="validation_failed",
+        )
+
+    return (
+        resolved_task_intent_id,
+        resolved_context_bundle_id,
+        resolved_context_bundle_hash,
+        manifest,
+    )
+
+
 def normalize_request(request: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(request, dict):
         raise IntakeNormalizationError(
@@ -165,6 +252,13 @@ def normalize_request(request: dict[str, Any]) -> dict[str, Any]:
             public_reason_code="validation_failed",
         )
 
+    (
+        task_intent_id,
+        context_bundle_id,
+        context_bundle_hash,
+        context_bundle_manifest,
+    ) = _resolve_context_connectivity_fields(request)
+
     now = request.get("now") or now_utc_iso()
     seed = {
         "packet_class": packet_class,
@@ -177,6 +271,9 @@ def normalize_request(request: dict[str, Any]) -> dict[str, Any]:
         "live_query": live_query,
         "cache_key": request.get("cache_key"),
         "adapter_config": adapter_config,
+        "task_intent_id": task_intent_id,
+        "context_bundle_id": context_bundle_id,
+        "context_bundle_hash": context_bundle_hash,
     }
 
     request_id = request.get("request_id") or stable_id("req", seed)
@@ -195,6 +292,9 @@ def normalize_request(request: dict[str, Any]) -> dict[str, Any]:
         "adapter_config": adapter_config,
         "live_query": live_query,
         "cache_key": request.get("cache_key"),
+        "task_intent_id": task_intent_id,
+        "context_bundle_id": context_bundle_id,
+        "context_bundle_hash": context_bundle_hash,
     }
 
     allow_minimum_viable_packet = bool(
@@ -204,7 +304,7 @@ def normalize_request(request: dict[str, Any]) -> dict[str, Any]:
         )
     )
 
-    return {
+    normalized = {
         "schema_version": "1.0.0",
         "packet_class": packet_class,
         "consumer_identity": consumer_identity.strip(),
@@ -248,3 +348,14 @@ def normalize_request(request: dict[str, Any]) -> dict[str, Any]:
         "telemetry_dir": request.get("telemetry_dir", "harness/telemetry"),
         "evidence_dir": request.get("evidence_dir", "harness/evidence"),
     }
+
+    if task_intent_id:
+        normalized["task_intent_id"] = task_intent_id
+    if context_bundle_id:
+        normalized["context_bundle_id"] = context_bundle_id
+    if context_bundle_hash:
+        normalized["context_bundle_hash"] = context_bundle_hash
+    if context_bundle_manifest:
+        normalized["context_bundle_manifest"] = context_bundle_manifest
+
+    return normalized

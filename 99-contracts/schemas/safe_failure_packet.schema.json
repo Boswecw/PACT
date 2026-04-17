@@ -27,6 +27,16 @@
     "trace_id": {
       "type": "string"
     },
+    "task_intent_id": {
+      "type": "string"
+    },
+    "context_bundle_id": {
+      "type": "string"
+    },
+    "context_bundle_hash": {
+      "type": "string",
+      "minLength": 8
+    },
     "packet_class": {
       "type": "string",
       "enum": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "failure_packet_id": "fail-context-001",
+  "request_id": "req-context-001",
+  "trace_id": "trace-context-001",
+  "task_intent_id": "intent_scene_polish_v1",
+  "context_bundle_id": "ctxb_1e5d4a4b7790c812",
+  "context_bundle_hash": "1e5d4a4b7790c812",
+  "packet_class": "answer_packet",
+  "failure_state": "validation_failure",
+  "retry_allowed": false,
+  "operator_trace_ref": "optrace-001",
+  "public_reason_code": "validation_failed"
+}

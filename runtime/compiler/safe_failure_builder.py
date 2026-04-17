@@ -42,12 +42,18 @@ def build_safe_failure_packet(
     packet_class = _pick_packet_class(source)
     request_id = _pick_request_id(source, packet_class)
     trace_id = _pick_trace_id(source, packet_class)
+    task_intent_id = source.get("task_intent_id") if isinstance(source, dict) else None
+    context_bundle_id = source.get("context_bundle_id") if isinstance(source, dict) else None
+    context_bundle_hash = source.get("context_bundle_hash") if isinstance(source, dict) else None
     seed = {
         "packet_class": packet_class,
         "request_id": request_id,
         "trace_id": trace_id,
         "failure_state": failure_state,
         "public_reason_code": public_reason_code,
+        "task_intent_id": task_intent_id,
+        "context_bundle_id": context_bundle_id,
+        "context_bundle_hash": context_bundle_hash,
     }
     failure_packet_id = stable_id("fpkt", seed)
     operator_trace_ref = f"optrace_{trace_id[-12:]}"
@@ -62,5 +68,11 @@ def build_safe_failure_packet(
         "operator_trace_ref": operator_trace_ref,
         "public_reason_code": public_reason_code,
     }
+    if task_intent_id:
+        packet["task_intent_id"] = task_intent_id
+    if context_bundle_id:
+        packet["context_bundle_id"] = context_bundle_id
+    if context_bundle_hash:
+        packet["context_bundle_hash"] = context_bundle_hash
     packet["_derived_hash"] = sha256_hex(canonical_json(packet))
     return packet

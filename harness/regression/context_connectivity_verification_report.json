@@ -1,0 +1,37 @@
+{
+  "total_cases": 3,
+  "results": [
+    {
+      "case_id": "context_bundle_success_top_level",
+      "kind": "success",
+      "packet_id": "pkt_9ee33c5afe4dc003",
+      "receipt_id": "rcpt_b068f2feff5ca0b7",
+      "task_intent_id": "intent_scene_polish_v1",
+      "context_bundle_id": "ctxb_1e5d4a4b7790c812",
+      "context_bundle_hash": "1e5d4a4b7790c812"
+    },
+    {
+      "case_id": "context_bundle_success_manifest_derived",
+      "kind": "success",
+      "packet_id": "pkt_4a2bc083a65b2379",
+      "receipt_id": "rcpt_dd942fb476d16986",
+      "task_intent_id": "intent_scene_polish_v1",
+      "context_bundle_id": "ctxb_9a4d3d1c44887711",
+      "context_bundle_hash": "9a4d3d1c44887711"
+    },
+    {
+      "case_id": "context_bundle_safe_failure_keeps_ids",
+      "kind": "safe_failure",
+      "packet_id": "fpkt_aa6096c5c3265d1a",
+      "receipt_id": "rcpt_0b214057b2ee732f",
+      "task_intent_id": "intent_scene_polish_v1",
+      "context_bundle_id": "ctxb_5f4d3d1c44887711",
+      "context_bundle_hash": "5f4d3d1c44887711"
+    }
+  ],
+  "packet_identity_change_proved": true,
+  "first_packet_id": "pkt_be6bc70717711200",
+  "second_packet_id": "pkt_b52a663bc95eec3a",
+  "first_receipt_id": "rcpt_a6f081198eecfc27",
+  "second_receipt_id": "rcpt_570736d0de1b8730"
+}

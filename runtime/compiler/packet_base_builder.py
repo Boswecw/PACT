@@ -11,8 +11,11 @@ def build_packet_base(normalized: dict[str, Any]) -> dict[str, Any]:
         "trace_id": normalized["trace_id"],
         "packet_class": normalized["packet_class"],
         "compile_input": normalized["compile_input"],
+        "task_intent_id": normalized.get("task_intent_id"),
+        "context_bundle_id": normalized.get("context_bundle_id"),
+        "context_bundle_hash": normalized.get("context_bundle_hash"),
     }
-    return {
+    packet = {
         "schema_version": normalized["schema_version"],
         "packet_id": stable_id("pkt", packet_seed),
         "packet_class": normalized["packet_class"],
@@ -33,6 +36,13 @@ def build_packet_base(normalized: dict[str, Any]) -> dict[str, Any]:
         "warnings": list(normalized["warnings"]),
         "restrictions": list(normalized["restrictions"]),
     }
+    if normalized.get("task_intent_id"):
+        packet["task_intent_id"] = normalized["task_intent_id"]
+    if normalized.get("context_bundle_id"):
+        packet["context_bundle_id"] = normalized["context_bundle_id"]
+    if normalized.get("context_bundle_hash"):
+        packet["context_bundle_hash"] = normalized["context_bundle_hash"]
+    return packet
 
 
 def finalize_packet_hash(packet: dict[str, Any]) -> dict[str, Any]:

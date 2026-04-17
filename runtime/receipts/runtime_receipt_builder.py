@@ -36,6 +36,9 @@ def build_runtime_receipt(
             "compatibility_posture": "compatible",
         },
     )
+    task_intent_id = packet_or_failure.get("task_intent_id") or normalized.get("task_intent_id")
+    context_bundle_id = packet_or_failure.get("context_bundle_id") or normalized.get("context_bundle_id")
+    context_bundle_hash = packet_or_failure.get("context_bundle_hash") or normalized.get("context_bundle_hash")
 
     measured_tokens = estimate_token_count(packet_or_failure)
     final_input_tokens = measured_tokens if input_tokens is None else input_tokens
@@ -52,9 +55,12 @@ def build_runtime_receipt(
         "packet_id": packet_id,
         "safe_failure_invoked": safe_failure_invoked,
         "degradation_state": degradation_state,
+        "task_intent_id": task_intent_id,
+        "context_bundle_id": context_bundle_id,
+        "context_bundle_hash": context_bundle_hash,
     }
 
-    return {
+    receipt = {
         "schema_version": "1.0.0",
         "receipt_id": stable_id("rcpt", seed),
         "request_id": request_id,
@@ -82,3 +88,10 @@ def build_runtime_receipt(
         "model_call_allowed": model_call_allowed,
         "safe_failure_invoked": safe_failure_invoked,
     }
+    if task_intent_id:
+        receipt["task_intent_id"] = task_intent_id
+    if context_bundle_id:
+        receipt["context_bundle_id"] = context_bundle_id
+    if context_bundle_hash:
+        receipt["context_bundle_hash"] = context_bundle_hash
+    return receipt

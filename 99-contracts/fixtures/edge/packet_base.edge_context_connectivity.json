@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "packet_id": "pkt-context-001",
+  "packet_class": "answer_packet",
+  "packet_revision": 1,
+  "request_id": "req-context-001",
+  "trace_id": "trace-context-001",
+  "task_intent_id": "intent_scene_polish_v1",
+  "context_bundle_id": "ctxb_1e5d4a4b7790c812",
+  "context_bundle_hash": "1e5d4a4b7790c812",
+  "consumer_identity": "authorforge",
+  "permission_context_digest": "permctxdigest0001",
+  "source_lineage_digest": {
+    "digest_algorithm": "sha256",
+    "digest": "abcd1234abcd1234",
+    "source_scope": "packet"
+  },
+  "serialization_profile": "plain_text_only",
+  "lifecycle_state": "validated",
+  "freshness_state": "fresh",
+  "admissibility_state": "admissible",
+  "created_at": "2026-04-16T01:00:00Z",
+  "expires_at": "2026-04-16T01:05:00Z",
+  "packet_hash": "hashvalue00000001",
+  "grounding_required": true,
+  "warnings": [],
+  "restrictions": []
+}
