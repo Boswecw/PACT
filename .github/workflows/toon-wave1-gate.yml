@@ -1,0 +1,60 @@
+name: TOON Wave 1 Gate
+
+on:
+  push:
+    paths:
+      - "runtime/**"
+      - "scripts/**"
+      - "99-contracts/**"
+      - "doc/system/**"
+      - ".github/workflows/toon-wave1-gate.yml"
+  pull_request:
+    paths:
+      - "runtime/**"
+      - "scripts/**"
+      - "99-contracts/**"
+      - "doc/system/**"
+      - ".github/workflows/toon-wave1-gate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  toon-wave1-gate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install repo requirements if present
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+
+      - name: Run TOON wave 1 repo gate
+        shell: bash
+        env:
+          PACT_ENABLE_TOON_WAVE1: "true"
+        run: |
+          set -euo pipefail
+          python scripts/verify_toon_repo_gate.py
+
+      - name: Upload TOON wave 1 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: toon-wave1-evidence
+          path: |
+            docs/evidence/*.json
+            docs/evidence/*.md
+            .pact_local/toon_events.jsonl
+          if-no-files-found: warn

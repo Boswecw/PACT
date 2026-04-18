@@ -1,0 +1,21 @@
+{
+  "all_green": true,
+  "non_strict_cases": {
+    "toon_fail_closed_answer_packet": {
+      "expected_hash": "sha256:9ade960d4059b7a5c99d99fae0130e4b9baa2e4dca46eb6d46ee4cf3fb6598a0",
+      "observed_hash": "sha256:2ca080ca3f979f6865bfe4a1c21cf9483dab283e9ee8703d0317319ff1ec027b"
+    },
+    "toon_fallback_zero_rows": {
+      "expected_hash": "sha256:21fc692e5845c58054b533545a6e58a3b80eb3830f926179b4ee53df2e52af4c",
+      "observed_hash": "sha256:f71a250663627fde95dc957091bf89e4e9fd79fcb78b67cad0654c7c82023299"
+    }
+  },
+  "observed": {
+    "toon_fail_closed_answer_packet": "sha256:2ca080ca3f979f6865bfe4a1c21cf9483dab283e9ee8703d0317319ff1ec027b",
+    "toon_fallback_zero_rows": "sha256:f71a250663627fde95dc957091bf89e4e9fd79fcb78b67cad0654c7c82023299",
+    "toon_success": "sha256:e11c303a2d61950cef8502d41e6337cf53c2dae94456bdff79d12cde8304568c"
+  },
+  "strict_cases": {
+    "toon_success": "sha256:e11c303a2d61950cef8502d41e6337cf53c2dae94456bdff79d12cde8304568c"
+  }
+}

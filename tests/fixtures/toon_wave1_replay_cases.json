@@ -1,0 +1,123 @@
+[
+  {
+    "name": "toon_success",
+    "request": {
+      "packet_class": "search_assist_packet",
+      "consumer_identity": "slice08_verify",
+      "permission_context": {
+        "mode": "standard"
+      },
+      "serialization_profile": "plain_text_with_toon_segment",
+      "emit_telemetry": false,
+      "compile_input": {
+        "search_goal": "Find deterministic rendering examples.",
+        "selection_constraints": [
+          "Prefer policy-safe examples."
+        ],
+        "ranked_result_blocks": [
+          {
+            "rank": 1,
+            "title": "Alpha result",
+            "source_ref": "doc://alpha",
+            "summary": "Alpha summary with | delimiter and\nnew line."
+          },
+          {
+            "rank": 2,
+            "title": "Beta result",
+            "source_ref": "doc://beta",
+            "summary": "Beta summary"
+          }
+        ],
+        "grounding_refs": [
+          {
+            "grounding_id": "g1",
+            "source_ref": "doc://alpha",
+            "authority_class": "primary",
+            "excerpt": "Alpha excerpt",
+            "start_offset": 0,
+            "end_offset": 12
+          }
+        ],
+        "result_count": 2
+      }
+    },
+    "expected": {
+      "ok": true,
+      "packet_class": "search_assist_packet",
+      "requested_profile": "plain_text_with_toon_segment",
+      "used_profile": "plain_text_with_toon_segment",
+      "artifact_kind": "toon_segment",
+      "fallback_used": false,
+      "row_count": 2
+    }
+  },
+  {
+    "name": "toon_fallback_zero_rows",
+    "request": {
+      "packet_class": "search_assist_packet",
+      "consumer_identity": "slice08_verify",
+      "permission_context": {
+        "mode": "standard"
+      },
+      "serialization_profile": "plain_text_with_toon_segment",
+      "emit_telemetry": false,
+      "compile_input": {
+        "search_goal": "Find nothing",
+        "selection_constraints": [],
+        "ranked_result_blocks": [],
+        "grounding_refs": [],
+        "result_count": 0
+      }
+    },
+    "expected": {
+      "ok": true,
+      "packet_class": "search_assist_packet",
+      "requested_profile": "plain_text_with_toon_segment",
+      "used_profile": "plain_text_only",
+      "artifact_kind": "plain_text",
+      "fallback_used": true,
+      "fallback_reason": "no_renderable_rows"
+    }
+  },
+  {
+    "name": "toon_fail_closed_answer_packet",
+    "request": {
+      "packet_class": "answer_packet",
+      "consumer_identity": "slice08_verify",
+      "permission_context": {
+        "mode": "standard"
+      },
+      "serialization_profile": "plain_text_with_toon_segment",
+      "emit_telemetry": false,
+      "compile_input": {
+        "task_goal": "Answer the question",
+        "instruction_block": "Use the evidence.",
+        "support_blocks": [
+          "Support block"
+        ],
+        "grounding_refs": [
+          {
+            "grounding_id": "g1",
+            "source_ref": "doc://policy",
+            "authority_class": "primary",
+            "excerpt": "Policy excerpt",
+            "start_offset": 0,
+            "end_offset": 12
+          }
+        ],
+        "answer_constraints": [
+          "Do not invent facts."
+        ]
+      }
+    },
+    "expected": {
+      "ok": false,
+      "packet_class": "answer_packet",
+      "requested_profile": "plain_text_with_toon_segment",
+      "used_profile": "plain_text_only",
+      "artifact_kind": "plain_text",
+      "fallback_used": false,
+      "public_reason_code": "serialization_failed"
+    }
+  }
+]

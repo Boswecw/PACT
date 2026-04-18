@@ -4,7 +4,7 @@
     {
       "bytes": 1066,
       "path": "docs/evidence/toon_wave1_operator_examples.md",
-      "sha256": "sha256:f618490434f2dc58953ae8dda1d2d45a1762c9e1a63cbbef7b3134b69f125c89"
+      "sha256": "sha256:9dd0fd73e3c2cbae6dcf0d4a049d28dfdc2e77f24dbff322ee4b19847bdb2b04"
     },
     {
       "bytes": 444,
@@ -12,14 +12,14 @@
       "sha256": "sha256:43051b9320966adbee77d3e3a6d47fb40f9e53a718bad1d085ac17e1895e1818"
     },
     {
-      "bytes": 1255,
+      "bytes": 2339,
       "path": "docs/evidence/toon_wave1_gate_report.json",
-      "sha256": "sha256:89db09749abd1aac4e344436c5ca2dfc8a9670c44b056cdf4970028c9a046de5"
+      "sha256": "sha256:07a3f91719c9637c1d5c17f08903d910e6dd14d35e5b3137e9b51e5651184d92"
     },
     {
-      "bytes": 1570,
+      "bytes": 2263,
       "path": "docs/evidence/toon_wave1_repo_map.md",
-      "sha256": "sha256:fbb0083a25462058d378d286b1e837af8823dc9e2ce1477425c03a85257bdbc8"
+      "sha256": "sha256:2a8ea44a42e9409bd1650b4754ff52ff531324d0fc1c582101d1af7fc48ad937"
     },
     {
       "bytes": 617,

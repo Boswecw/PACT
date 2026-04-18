@@ -2,6 +2,7 @@
 
 | Path | Exists | Kind |
 |---|---:|---|
+| `.github/workflows/toon-wave1-gate.yml` | yes | file |
 | `runtime/rendering/__init__.py` | yes | file |
 | `runtime/rendering/renderer.py` | yes | file |
 | `runtime/rendering/toon_registry.json` | yes | file |
@@ -14,7 +15,14 @@
 | `scripts/verify_toon_observability.py` | yes | file |
 | `scripts/verify_toon_extension_governance.py` | yes | file |
 | `scripts/verify_toon_promotion_packet.py` | yes | file |
+| `scripts/verify_toon_ci_gate_files.py` | yes | file |
+| `scripts/verify_toon_replay_matrix.py` | yes | file |
+| `scripts/verify_toon_golden_hashes.py` | yes | file |
+| `scripts/verify_toon_non_strict_canonical.py` | yes | file |
 | `scripts/verify_toon_repo_gate.py` | yes | file |
+| `tests/fixtures/toon_wave1_replay_cases.json` | yes | file |
+| `tests/fixtures/toon_wave1_golden_hashes.json` | yes | file |
+| `tests/fixtures/toon_wave1_non_strict_canonical_targets.json` | yes | file |
 | `99-contracts/schemas/serialization_evidence.schema.json` | yes | file |
 | `99-contracts/schemas/serialization_evidence_segment_meta.schema.json` | yes | file |
 | `99-contracts/schemas/serialization_evidence_token_estimates.schema.json` | yes | file |
@@ -27,3 +35,7 @@
 | `doc/system/40_governance/02_toon_extension_admission_policy.md` | yes | file |
 | `doc/system/50_operations/01_toon_wave1_proof_gate.md` | yes | file |
 | `doc/system/50_operations/03_toon_wave1_promotion_packet.md` | yes | file |
+| `doc/system/50_operations/04_toon_ci_gate.md` | yes | file |
+| `doc/system/50_operations/05_toon_replay_matrix.md` | yes | file |
+| `doc/system/50_operations/06_toon_golden_hash_lock.md` | yes | file |
+| `doc/system/50_operations/07_toon_non_strict_canonical_lock.md` | yes | file |

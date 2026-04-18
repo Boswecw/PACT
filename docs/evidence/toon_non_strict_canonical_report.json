@@ -1,0 +1,49 @@
+{
+  "all_green": true,
+  "observed": {
+    "toon_fail_closed_answer_packet": {
+      "canonical_digest": "sha256:06a9a4d212482060e3619bd8b957e515c5d41441d970fb87017274627525d0ea",
+      "projection": {
+        "artifact_kind": "plain_text",
+        "fallback_used": false,
+        "ok": false,
+        "packet_class": "answer_packet",
+        "public_reason_code": "serialization_failed",
+        "requested_profile": "plain_text_with_toon_segment",
+        "used_profile": "plain_text_only"
+      }
+    },
+    "toon_fallback_zero_rows": {
+      "canonical_digest": "sha256:69f235ebeac6543bff57acaf011ac4f8391aecf2377d1edafb036709804ee9d6",
+      "projection": {
+        "artifact_kind": "plain_text",
+        "fallback_reason": "no_renderable_rows",
+        "fallback_used": true,
+        "ok": true,
+        "packet_class": "search_assist_packet",
+        "requested_profile": "plain_text_with_toon_segment",
+        "used_profile": "plain_text_only"
+      }
+    }
+  },
+  "targets": {
+    "toon_fail_closed_answer_packet": {
+      "artifact_kind": "plain_text",
+      "fallback_used": false,
+      "ok": false,
+      "packet_class": "answer_packet",
+      "public_reason_code": "serialization_failed",
+      "requested_profile": "plain_text_with_toon_segment",
+      "used_profile": "plain_text_only"
+    },
+    "toon_fallback_zero_rows": {
+      "artifact_kind": "plain_text",
+      "fallback_reason": "no_renderable_rows",
+      "fallback_used": true,
+      "ok": true,
+      "packet_class": "search_assist_packet",
+      "requested_profile": "plain_text_with_toon_segment",
+      "used_profile": "plain_text_only"
+    }
+  }
+}

@@ -15,9 +15,14 @@ SCRIPTS = [
     ("slice_03_observability", "scripts/verify_toon_observability.py"),
     ("slice_05_extension_governance", "scripts/verify_toon_extension_governance.py"),
     ("slice_06_promotion_packet", "scripts/verify_toon_promotion_packet.py"),
+    ("slice_07_ci_gate_files", "scripts/verify_toon_ci_gate_files.py"),
+    ("slice_08_replay_matrix", "scripts/verify_toon_replay_matrix.py"),
+    ("slice_09_golden_hashes", "scripts/verify_toon_golden_hashes.py"),
+    ("slice_10_non_strict_canonical", "scripts/verify_toon_non_strict_canonical.py"),
 ]
 
 REPO_MAP_TARGETS = [
+    ".github/workflows/toon-wave1-gate.yml",
     "runtime/rendering/__init__.py",
     "runtime/rendering/renderer.py",
     "runtime/rendering/toon_registry.json",
@@ -30,7 +35,14 @@ REPO_MAP_TARGETS = [
     "scripts/verify_toon_observability.py",
     "scripts/verify_toon_extension_governance.py",
     "scripts/verify_toon_promotion_packet.py",
+    "scripts/verify_toon_ci_gate_files.py",
+    "scripts/verify_toon_replay_matrix.py",
+    "scripts/verify_toon_golden_hashes.py",
+    "scripts/verify_toon_non_strict_canonical.py",
     "scripts/verify_toon_repo_gate.py",
+    "tests/fixtures/toon_wave1_replay_cases.json",
+    "tests/fixtures/toon_wave1_golden_hashes.json",
+    "tests/fixtures/toon_wave1_non_strict_canonical_targets.json",
     "99-contracts/schemas/serialization_evidence.schema.json",
     "99-contracts/schemas/serialization_evidence_segment_meta.schema.json",
     "99-contracts/schemas/serialization_evidence_token_estimates.schema.json",
@@ -43,6 +55,10 @@ REPO_MAP_TARGETS = [
     "doc/system/40_governance/02_toon_extension_admission_policy.md",
     "doc/system/50_operations/01_toon_wave1_proof_gate.md",
     "doc/system/50_operations/03_toon_wave1_promotion_packet.md",
+    "doc/system/50_operations/04_toon_ci_gate.md",
+    "doc/system/50_operations/05_toon_replay_matrix.md",
+    "doc/system/50_operations/06_toon_golden_hash_lock.md",
+    "doc/system/50_operations/07_toon_non_strict_canonical_lock.md",
 ]
 
 
@@ -120,6 +136,10 @@ def main() -> None:
         "slice_04_repo_map": str(repo_map_path),
         "slice_05_extension_governance_report": str(REPO_ROOT / "docs" / "evidence" / "toon_extension_governance_report.json"),
         "slice_06_promotion_packet": str(REPO_ROOT / "docs" / "evidence" / "toon_wave1_promotion_packet.json"),
+        "slice_07_ci_gate_files_report": str(REPO_ROOT / "docs" / "evidence" / "toon_ci_gate_files_report.json"),
+        "slice_08_replay_matrix_report": str(REPO_ROOT / "docs" / "evidence" / "toon_replay_matrix_report.json"),
+        "slice_09_golden_hashes_report": str(REPO_ROOT / "docs" / "evidence" / "toon_golden_hashes_report.json"),
+        "slice_10_non_strict_canonical_report": str(REPO_ROOT / "docs" / "evidence" / "toon_non_strict_canonical_report.json"),
     }
 
     for label, artifact in artifacts.items():
