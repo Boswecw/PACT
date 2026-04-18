@@ -1,0 +1,30 @@
+{
+  "all_green": true,
+  "artifacts": {
+    "slice_02_operator_examples": "/home/charlie/Forge/ecosystem/pact/docs/evidence/toon_wave1_operator_examples.md",
+    "slice_03_observability_report": "/home/charlie/Forge/ecosystem/pact/docs/evidence/toon_observability_report.json",
+    "slice_03_observability_stream": "/home/charlie/Forge/ecosystem/pact/.pact_local/toon_events.jsonl",
+    "slice_04_repo_map": "/home/charlie/Forge/ecosystem/pact/docs/evidence/toon_wave1_repo_map.md"
+  },
+  "repo_gate": "toon_wave1",
+  "runs": [
+    {
+      "label": "slice_01_boundary",
+      "ok": true,
+      "returncode": 0,
+      "script": "scripts/verify_toon_slice_01.py"
+    },
+    {
+      "label": "slice_02_wave1",
+      "ok": true,
+      "returncode": 0,
+      "script": "scripts/verify_toon_wave1.py"
+    },
+    {
+      "label": "slice_03_observability",
+      "ok": true,
+      "returncode": 0,
+      "script": "scripts/verify_toon_observability.py"
+    }
+  ]
+}
