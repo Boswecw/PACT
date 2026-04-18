@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "segment_version": "1.0.0",
+  "row_definition_id": "ranked_result_row_v1",
+  "supported_packet_classes": [
+    "search_assist_packet"
+  ],
+  "field_order": [
+    "rank",
+    "title",
+    "source_ref",
+    "summary"
+  ]
+}

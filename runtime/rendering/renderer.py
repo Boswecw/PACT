@@ -1,13 +1,11 @@
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from typing import Any
 
 from src.shared.pact_utils import canonical_json, estimate_token_count, sha256_hex, stable_id
 
-TOON_SEGMENT_VERSION = "1.0.0"
-TOON_ROW_DEFINITION_ID = "ranked_result_row_v1"
-TOON_FIELD_ORDER = ("rank", "title", "source_ref", "summary")
 TOKEN_ESTIMATOR_FAMILY = "pact_estimate_token_count_v1"
 
 
@@ -71,6 +69,11 @@ class RenderedArtifact:
         return evidence
 
 
+def _toon_wave1_enabled() -> bool:
+    raw = os.getenv("PACT_ENABLE_TOON_WAVE1", "false").strip().lower()
+    return raw in {"1", "true", "yes", "on"}
+
+
 def render_model_artifact(packet: dict[str, Any], requested_profile: str) -> RenderedArtifact:
     if requested_profile == "plain_text_only":
         artifact_text = _render_plain_text_only(packet)
@@ -130,6 +133,23 @@ def render_model_artifact(packet: dict[str, Any], requested_profile: str) -> Ren
             failure_state="render_failure",
         )
 
+    if not _toon_wave1_enabled():
+        baseline_text = _render_plain_text_only(packet)
+        baseline_tokens = estimate_token_count(baseline_text)
+        return RenderedArtifact(
+            requested_profile=requested_profile,
+            used_profile="plain_text_only",
+            render_attempted=False,
+            fallback_used=True,
+            fallback_reason="toon_disabled",
+            artifact_kind="plain_text",
+            artifact_version="1.0.0",
+            artifact_text=baseline_text,
+            segment_meta=None,
+            before_tokens=baseline_tokens,
+            after_tokens=baseline_tokens,
+        )
+
     return _render_toon_or_fallback(packet, requested_profile)
 
 def render_safe_failure_artifact(
@@ -157,8 +177,11 @@ def render_safe_failure_artifact(
     )
 
 def _render_toon_or_fallback(packet: dict[str, Any], requested_profile: str) -> RenderedArtifact:
+    from runtime.rendering.toon_registry import load_wave1_registry
+
+    registry = load_wave1_registry()
     packet_class = packet.get("packet_class")
-    if packet_class != "search_assist_packet":
+    if packet_class not in set(registry.get("supported_packet_classes", [])):
         raise RenderFailure(
             f"TOON is not allowed for packet_class={packet_class!r} in wave 1",
             public_reason_code="serialization_failed",
@@ -181,7 +204,7 @@ def _render_toon_or_fallback(packet: dict[str, Any], requested_profile: str) -> 
         )
 
     try:
-        segment_text = _render_toon_segment(packet, rows)
+        segment_text = _render_toon_segment(rows)
     except RenderFailure as exc:
         if exc.fallback_allowed:
             return _build_toon_fallback_result(
@@ -204,12 +227,12 @@ def _render_toon_or_fallback(packet: dict[str, Any], requested_profile: str) -> 
             {
                 "packet_id": packet.get("packet_id"),
                 "packet_hash": packet.get("packet_hash"),
-                "row_definition_id": TOON_ROW_DEFINITION_ID,
+                "row_definition_id": registry["row_definition_id"],
                 "segment_hash": segment_hash,
             },
         ),
-        "segment_version": TOON_SEGMENT_VERSION,
-        "row_definition_id": TOON_ROW_DEFINITION_ID,
+        "segment_version": registry["segment_version"],
+        "row_definition_id": registry["row_definition_id"],
         "row_count": row_count,
         "source_lineage_digest": source_lineage_digest,
         "segment_hash": segment_hash,
@@ -223,7 +246,7 @@ def _render_toon_or_fallback(packet: dict[str, Any], requested_profile: str) -> 
         fallback_used=False,
         fallback_reason=None,
         artifact_kind="toon_segment",
-        artifact_version=TOON_SEGMENT_VERSION,
+        artifact_version=registry["segment_version"],
         artifact_text=segment_text,
         segment_meta=segment_meta,
         before_tokens=baseline_tokens,
@@ -253,7 +276,12 @@ def _build_toon_fallback_result(
         after_tokens=baseline_tokens,
     )
 
-def _render_toon_segment(packet: dict[str, Any], rows: list[dict[str, Any]]) -> str:
+def _render_toon_segment(rows: list[dict[str, Any]]) -> str:
+    from runtime.rendering.toon_registry import load_wave1_registry
+
+    registry = load_wave1_registry()
+    field_order = tuple(registry["field_order"])
+
     row_lines: list[str] = []
     for index, row in enumerate(rows, start=1):
         if not isinstance(row, dict):
@@ -264,7 +292,7 @@ def _render_toon_segment(packet: dict[str, Any], rows: list[dict[str, Any]]) -> 
             )
 
         rendered_fields: list[str] = []
-        for field_name in TOON_FIELD_ORDER:
+        for field_name in field_order:
             if field_name not in row:
                 raise RenderFailure(
                     f"ranked_result_blocks[{index}].{field_name} is missing",
@@ -284,8 +312,8 @@ def _render_toon_segment(packet: dict[str, Any], rows: list[dict[str, Any]]) -> 
         row_lines.append("ROW|" + "|".join(rendered_fields))
 
     header = (
-        f"[TOON_SEGMENT|segment_version={TOON_SEGMENT_VERSION}"
-        f"|row_definition_id={TOON_ROW_DEFINITION_ID}|row_count={len(rows)}]"
+        f"[TOON_SEGMENT|segment_version={registry['segment_version']}"
+        f"|row_definition_id={registry['row_definition_id']}|row_count={len(rows)}]"
     )
     footer = "[/TOON_SEGMENT]"
     return "\n".join([header, *row_lines, footer])

@@ -150,6 +150,7 @@ def _safe_failure_response(
         "artifact_text": rendered_artifact.artifact_text,
         "artifact_kind": rendered_artifact.artifact_kind,
         "artifact_hash": rendered_artifact.artifact_hash,
+        "model_artifact_emitted": False,
     }
     if normalized and normalized.get("emit_telemetry", False):
         result.update(
@@ -226,6 +227,7 @@ def _success_response(
         "artifact_text": rendered_artifact.artifact_text,
         "artifact_kind": rendered_artifact.artifact_kind,
         "artifact_hash": rendered_artifact.artifact_hash,
+        "model_artifact_emitted": True,
     }
     if normalized.get("emit_telemetry", False):
         result.update(
