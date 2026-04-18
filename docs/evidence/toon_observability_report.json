@@ -1,0 +1,21 @@
+{
+  "fallback_count": 2,
+  "fallback_reason_counts": {
+    "no_renderable_rows": 1,
+    "toon_disabled": 1
+  },
+  "packet_class_counts": {
+    "answer_packet": 1,
+    "search_assist_packet": 3
+  },
+  "requested_profile_counts": {
+    "plain_text_with_toon_segment": 4
+  },
+  "toon_requested_count": 4,
+  "toon_used_count": 1,
+  "total_events": 4,
+  "used_profile_counts": {
+    "plain_text_only": 3,
+    "plain_text_with_toon_segment": 1
+  }
+}

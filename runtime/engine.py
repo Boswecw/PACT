@@ -18,6 +18,7 @@ from runtime.compiler.safe_failure_builder import build_safe_failure_packet
 from runtime.evidence.exporter import emit_evidence_bundle
 from runtime.export.control_plane_adapter import maybe_emit_control_plane_bundle
 from runtime.intake.request_normalizer import IntakeNormalizationError, normalize_request
+from runtime.observability.toon_evidence import record_serialization_event
 from runtime.receipts.runtime_receipt_builder import build_runtime_receipt
 from runtime.rendering import RenderFailure, render_model_artifact, render_safe_failure_artifact
 from runtime.retrieval.pruning_engine import (
@@ -163,6 +164,23 @@ def _safe_failure_response(
                 candidate_refs or [],
             )
         )
+    try:
+        evidence = receipt.get("serialization_evidence", {})
+        record_serialization_event(
+            packet_class=safe_failure.get("packet_class"),
+            request_id=safe_failure.get("request_id"),
+            trace_id=safe_failure.get("trace_id"),
+            requested_profile=evidence.get("requested_profile"),
+            used_profile=evidence.get("used_profile"),
+            render_attempted=bool(evidence.get("render_attempted")),
+            fallback_used=bool(evidence.get("fallback_used")),
+            fallback_reason=evidence.get("fallback_reason"),
+            artifact_kind=evidence.get("artifact_kind"),
+            ok=False,
+            model_artifact_emitted=False,
+        )
+    except Exception:
+        pass
     return result
 
 
@@ -248,6 +266,23 @@ def _success_response(
                 candidate_refs or [],
             )
         )
+    try:
+        evidence = receipt.get("serialization_evidence", {})
+        record_serialization_event(
+            packet_class=packet.get("packet_class"),
+            request_id=packet.get("request_id"),
+            trace_id=packet.get("trace_id"),
+            requested_profile=evidence.get("requested_profile"),
+            used_profile=evidence.get("used_profile"),
+            render_attempted=bool(evidence.get("render_attempted")),
+            fallback_used=bool(evidence.get("fallback_used")),
+            fallback_reason=evidence.get("fallback_reason"),
+            artifact_kind=evidence.get("artifact_kind"),
+            ok=True,
+            model_artifact_emitted=True,
+        )
+    except Exception:
+        pass
     return result
 
 
