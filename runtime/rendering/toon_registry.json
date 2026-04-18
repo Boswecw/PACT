@@ -10,5 +10,7 @@
     "title",
     "source_ref",
     "summary"
-  ]
+  ],
+  "capability_class": "wave1_ranked_result_segment",
+  "admission_stage": "wave1_internal"
 }

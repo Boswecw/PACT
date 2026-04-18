@@ -13,6 +13,8 @@ SCRIPTS = [
     ("slice_01_boundary", "scripts/verify_toon_slice_01.py"),
     ("slice_02_wave1", "scripts/verify_toon_wave1.py"),
     ("slice_03_observability", "scripts/verify_toon_observability.py"),
+    ("slice_05_extension_governance", "scripts/verify_toon_extension_governance.py"),
+    ("slice_06_promotion_packet", "scripts/verify_toon_promotion_packet.py"),
 ]
 
 REPO_MAP_TARGETS = [
@@ -26,16 +28,21 @@ REPO_MAP_TARGETS = [
     "scripts/verify_toon_slice_01.py",
     "scripts/verify_toon_wave1.py",
     "scripts/verify_toon_observability.py",
+    "scripts/verify_toon_extension_governance.py",
+    "scripts/verify_toon_promotion_packet.py",
     "scripts/verify_toon_repo_gate.py",
     "99-contracts/schemas/serialization_evidence.schema.json",
     "99-contracts/schemas/serialization_evidence_segment_meta.schema.json",
     "99-contracts/schemas/serialization_evidence_token_estimates.schema.json",
     "99-contracts/schemas/runtime_receipt.schema.json",
     "99-contracts/schemas/safe_failure_packet.schema.json",
+    "99-contracts/schemas/toon_registry_wave1.schema.json",
     "doc/system/10_service-contract/01_receipt_serialization_evidence_strategy.md",
     "doc/system/20_runtime/01_runtime_serialization_boundary.md",
     "doc/system/40_governance/01_toon_wave1_rollout_and_feature_flag.md",
+    "doc/system/40_governance/02_toon_extension_admission_policy.md",
     "doc/system/50_operations/01_toon_wave1_proof_gate.md",
+    "doc/system/50_operations/03_toon_wave1_promotion_packet.md",
 ]
 
 
@@ -111,6 +118,8 @@ def main() -> None:
         "slice_03_observability_report": str(REPO_ROOT / "docs" / "evidence" / "toon_observability_report.json"),
         "slice_03_observability_stream": str(REPO_ROOT / ".pact_local" / "toon_events.jsonl"),
         "slice_04_repo_map": str(repo_map_path),
+        "slice_05_extension_governance_report": str(REPO_ROOT / "docs" / "evidence" / "toon_extension_governance_report.json"),
+        "slice_06_promotion_packet": str(REPO_ROOT / "docs" / "evidence" / "toon_wave1_promotion_packet.json"),
     }
 
     for label, artifact in artifacts.items():

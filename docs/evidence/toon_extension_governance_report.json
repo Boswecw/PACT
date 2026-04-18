@@ -1,0 +1,21 @@
+{
+  "all_green": true,
+  "registry": {
+    "admission_stage": "wave1_internal",
+    "capability_class": "wave1_ranked_result_segment",
+    "field_order": [
+      "rank",
+      "title",
+      "source_ref",
+      "summary"
+    ],
+    "row_definition_id": "ranked_result_row_v1",
+    "schema_version": "1.0.0",
+    "segment_version": "1.0.0",
+    "supported_packet_classes": [
+      "search_assist_packet"
+    ]
+  },
+  "registry_path": "/home/charlie/Forge/ecosystem/pact/runtime/rendering/toon_registry.json",
+  "schema_path": "/home/charlie/Forge/ecosystem/pact/99-contracts/schemas/toon_registry_wave1.schema.json"
+}

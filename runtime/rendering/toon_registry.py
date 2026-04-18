@@ -39,6 +39,8 @@ def load_wave1_registry() -> dict[str, Any]:
         "row_definition_id",
         "supported_packet_classes",
         "field_order",
+        "capability_class",
+        "admission_stage",
     }
     missing = required_fields.difference(payload)
     if missing:
@@ -62,6 +64,33 @@ def load_wave1_registry() -> dict[str, Any]:
     if payload["field_order"] != ["rank", "title", "source_ref", "summary"]:
         raise RenderFailure(
             "TOON registry field order is unsupported in wave 1",
+            public_reason_code="serialization_failed",
+            failure_state="render_failure",
+            fallback_allowed=False,
+            fallback_reason="registry_load_failure",
+        )
+
+    if payload["supported_packet_classes"] != ["search_assist_packet"]:
+        raise RenderFailure(
+            "TOON registry packet class allow-list is unsupported in wave 1",
+            public_reason_code="serialization_failed",
+            failure_state="render_failure",
+            fallback_allowed=False,
+            fallback_reason="registry_load_failure",
+        )
+
+    if payload["capability_class"] != "wave1_ranked_result_segment":
+        raise RenderFailure(
+            "TOON registry capability_class is unsupported in wave 1",
+            public_reason_code="serialization_failed",
+            failure_state="render_failure",
+            fallback_allowed=False,
+            fallback_reason="registry_load_failure",
+        )
+
+    if payload["admission_stage"] != "wave1_internal":
+        raise RenderFailure(
+            "TOON registry admission_stage is unsupported in wave 1",
             public_reason_code="serialization_failed",
             failure_state="render_failure",
             fallback_allowed=False,

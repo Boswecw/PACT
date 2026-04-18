@@ -1,0 +1,72 @@
+{
+  "all_green": true,
+  "entries": [
+    {
+      "bytes": 1066,
+      "path": "docs/evidence/toon_wave1_operator_examples.md",
+      "sha256": "sha256:f618490434f2dc58953ae8dda1d2d45a1762c9e1a63cbbef7b3134b69f125c89"
+    },
+    {
+      "bytes": 444,
+      "path": "docs/evidence/toon_observability_report.json",
+      "sha256": "sha256:43051b9320966adbee77d3e3a6d47fb40f9e53a718bad1d085ac17e1895e1818"
+    },
+    {
+      "bytes": 1255,
+      "path": "docs/evidence/toon_wave1_gate_report.json",
+      "sha256": "sha256:89db09749abd1aac4e344436c5ca2dfc8a9670c44b056cdf4970028c9a046de5"
+    },
+    {
+      "bytes": 1570,
+      "path": "docs/evidence/toon_wave1_repo_map.md",
+      "sha256": "sha256:fbb0083a25462058d378d286b1e837af8823dc9e2ce1477425c03a85257bdbc8"
+    },
+    {
+      "bytes": 617,
+      "path": "docs/evidence/toon_extension_governance_report.json",
+      "sha256": "sha256:6c7cf8b4122de172a955abb9c663691ab35272b934985f702e6f0cdeea20fb4d"
+    },
+    {
+      "bytes": 658,
+      "path": "doc/system/10_service-contract/01_receipt_serialization_evidence_strategy.md",
+      "sha256": "sha256:ad1e17adfc9f71fa0ba496fa1734af50880fc6eee1fae50541c2ce2a7fd616cf"
+    },
+    {
+      "bytes": 621,
+      "path": "doc/system/20_runtime/01_runtime_serialization_boundary.md",
+      "sha256": "sha256:eb926266c1e35671c874b784f5c2312020a4c6538680d335e5834827e0100c69"
+    },
+    {
+      "bytes": 611,
+      "path": "doc/system/40_governance/01_toon_wave1_rollout_and_feature_flag.md",
+      "sha256": "sha256:0b9f8e8b68b173cecb913dd920a0d3686883a8e731f4dcdf222785270ee0f2a6"
+    },
+    {
+      "bytes": 793,
+      "path": "doc/system/40_governance/02_toon_extension_admission_policy.md",
+      "sha256": "sha256:9488283fbb1c2dfeb66f19ffa0958ba376ad07be5d0e245ff7e5461c274c7e7a"
+    },
+    {
+      "bytes": 735,
+      "path": "doc/system/50_operations/01_toon_wave1_proof_gate.md",
+      "sha256": "sha256:59e50fc51978d1e30bd6e0f70f5e00fdb5c161bdeb8502e2afbd7e76a2aca6ce"
+    },
+    {
+      "bytes": 569,
+      "path": "doc/system/50_operations/03_toon_wave1_promotion_packet.md",
+      "sha256": "sha256:72cd02b4c256cea0cc01571d2f4b151ac2a24b2b43c22dc48ba1f156e4b8f244"
+    },
+    {
+      "bytes": 346,
+      "path": "runtime/rendering/toon_registry.json",
+      "sha256": "sha256:84331f7b6ca9d7a34d6892bc4dd80f2bab95fcd6f28b56e2b06606806f9771e7"
+    },
+    {
+      "bytes": 1268,
+      "path": "99-contracts/schemas/toon_registry_wave1.schema.json",
+      "sha256": "sha256:8a8b17871d7dc06121b522e34a4a13b968a7bc9f91c474476c3ea16ef6a03900"
+    }
+  ],
+  "packet_version": "1.0.0",
+  "promotion_packet": "toon_wave1"
+}

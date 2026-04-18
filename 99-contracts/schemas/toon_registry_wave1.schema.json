@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bds.local/pact/v1/schemas/toon_registry_wave1.schema.json",
+  "title": "PACT TOON Wave 1 Registry",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "segment_version",
+    "row_definition_id",
+    "supported_packet_classes",
+    "field_order",
+    "capability_class",
+    "admission_stage"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "segment_version": { "type": "string", "const": "1.0.0" },
+    "row_definition_id": { "type": "string", "const": "ranked_result_row_v1" },
+    "supported_packet_classes": {
+      "type": "array",
+      "items": { "type": "string", "const": "search_assist_packet" },
+      "minItems": 1,
+      "maxItems": 1
+    },
+    "field_order": {
+      "type": "array",
+      "items": { "type": "string" },
+      "prefixItems": [
+        { "const": "rank" },
+        { "const": "title" },
+        { "const": "source_ref" },
+        { "const": "summary" }
+      ],
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "capability_class": { "type": "string", "const": "wave1_ranked_result_segment" },
+    "admission_stage": { "type": "string", "const": "wave1_internal" }
+  },
+  "additionalProperties": true
+}
