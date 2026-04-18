@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bds.local/pact/v1/schemas/serialization_evidence_token_estimates.schema.json",
+  "title": "PACT V1 Serialization Evidence Token Estimates",
+  "type": "object",
+  "required": [
+    "before_tokens",
+    "after_tokens",
+    "delta_tokens",
+    "reduction_percentage",
+    "estimator_family"
+  ],
+  "properties": {
+    "before_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "after_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "delta_tokens": {
+      "type": "integer"
+    },
+    "reduction_percentage": {
+      "type": "number"
+    },
+    "estimator_family": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

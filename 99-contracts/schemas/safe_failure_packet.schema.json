@@ -53,6 +53,7 @@
         "validation_failure",
         "grounding_failure",
         "budget_failure",
+        "render_failure",
         "safe_failure"
       ]
     },

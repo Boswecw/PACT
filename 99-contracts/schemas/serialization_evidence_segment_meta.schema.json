@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bds.local/pact/v1/schemas/serialization_evidence_segment_meta.schema.json",
+  "title": "PACT V1 Serialization Evidence Segment Meta",
+  "type": "object",
+  "required": [
+    "segment_id",
+    "segment_version",
+    "row_definition_id",
+    "row_count",
+    "source_lineage_digest",
+    "segment_hash"
+  ],
+  "properties": {
+    "segment_id": {
+      "type": "string"
+    },
+    "segment_version": {
+      "type": "string"
+    },
+    "row_definition_id": {
+      "type": "string"
+    },
+    "row_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_lineage_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]+$"
+    },
+    "segment_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]+$"
+    }
+  },
+  "additionalProperties": false
+}

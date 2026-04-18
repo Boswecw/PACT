@@ -19,6 +19,7 @@ from runtime.evidence.exporter import emit_evidence_bundle
 from runtime.export.control_plane_adapter import maybe_emit_control_plane_bundle
 from runtime.intake.request_normalizer import IntakeNormalizationError, normalize_request
 from runtime.receipts.runtime_receipt_builder import build_runtime_receipt
+from runtime.rendering import RenderFailure, render_model_artifact, render_safe_failure_artifact
 from runtime.retrieval.pruning_engine import (
     BudgetPreparationError,
     GroundingUnavailableError,
@@ -88,6 +89,18 @@ def _emit_artifacts(
     }
 
 
+def _merge_telemetry_context(
+    base: dict[str, Any] | None,
+    extra: dict[str, Any] | None,
+) -> dict[str, Any]:
+    merged: dict[str, Any] = {}
+    if base:
+        merged.update(base)
+    if extra:
+        merged.update(extra)
+    return merged
+
+
 def _safe_failure_response(
     normalized: dict[str, Any] | None,
     source: dict[str, Any] | None,
@@ -101,6 +114,7 @@ def _safe_failure_response(
     naive_baseline_tokens: int | None = None,
     telemetry_context: dict[str, Any] | None = None,
     candidate_refs: list[str] | None = None,
+    render_attempted: bool = False,
 ) -> dict[str, Any]:
     safe_failure = build_safe_failure_packet(
         normalized or source,
@@ -108,6 +122,12 @@ def _safe_failure_response(
         public_reason_code=public_reason_code,
     )
     validate_instance({k: v for k, v in safe_failure.items() if not k.startswith("_")}, "safe_failure_packet.schema.json")
+    rendered_artifact = render_safe_failure_artifact(
+        normalized,
+        safe_failure,
+        render_attempted=render_attempted,
+        fallback_reason=public_reason_code,
+    )
     receipt = build_runtime_receipt(
         normalized,
         safe_failure,
@@ -118,10 +138,19 @@ def _safe_failure_response(
         retrieval_ms=retrieval_ms,
         rerank_prune_ms=rerank_prune_ms,
         naive_baseline_tokens=naive_baseline_tokens,
+        input_tokens=rendered_artifact.after_tokens,
+        serialization_evidence=rendered_artifact.to_serialization_evidence(),
     )
     validate_instance(receipt, "runtime_receipt.schema.json")
     safe_failure.pop("_derived_hash", None)
-    result = {"ok": False, "packet": safe_failure, "receipt": receipt}
+    result = {
+        "ok": False,
+        "packet": safe_failure,
+        "receipt": receipt,
+        "artifact_text": rendered_artifact.artifact_text,
+        "artifact_kind": rendered_artifact.artifact_kind,
+        "artifact_hash": rendered_artifact.artifact_hash,
+    }
     if normalized and normalized.get("emit_telemetry", False):
         result.update(
             _emit_artifacts(
@@ -153,6 +182,29 @@ def _success_response(
     finalize_packet_hash(packet)
     validate_instance(packet, SCHEMA_MAP[packet["packet_class"]])
 
+    try:
+        rendered_artifact = render_model_artifact(packet, normalized["serialization_profile"])
+    except RenderFailure as exc:
+        return _safe_failure_response(
+            normalized,
+            packet,
+            failure_state=exc.failure_state,
+            public_reason_code=exc.public_reason_code,
+            compile_validate_ms=compile_validate_ms,
+            retrieval_ms=retrieval_ms,
+            rerank_prune_ms=rerank_prune_ms,
+            naive_baseline_tokens=naive_baseline_tokens,
+            telemetry_context=_merge_telemetry_context(
+                telemetry_context,
+                {
+                    "serialization_requested_profile": normalized["serialization_profile"],
+                    "render_failure_reason": exc.fallback_reason or exc.public_reason_code,
+                },
+            ),
+            candidate_refs=candidate_refs,
+            render_attempted=True,
+        )
+
     receipt = build_runtime_receipt(
         normalized,
         packet,
@@ -162,11 +214,19 @@ def _success_response(
         compile_validate_ms=compile_validate_ms,
         retrieval_ms=retrieval_ms,
         rerank_prune_ms=rerank_prune_ms,
-        input_tokens=packet_token_count(packet),
-        naive_baseline_tokens=naive_baseline_tokens,
+        input_tokens=rendered_artifact.after_tokens,
+        naive_baseline_tokens=rendered_artifact.before_tokens if naive_baseline_tokens is None else naive_baseline_tokens,
+        serialization_evidence=rendered_artifact.to_serialization_evidence(),
     )
     validate_instance(receipt, "runtime_receipt.schema.json")
-    result = {"ok": True, "packet": packet, "receipt": receipt}
+    result = {
+        "ok": True,
+        "packet": packet,
+        "receipt": receipt,
+        "artifact_text": rendered_artifact.artifact_text,
+        "artifact_kind": rendered_artifact.artifact_kind,
+        "artifact_hash": rendered_artifact.artifact_hash,
+    }
     if normalized.get("emit_telemetry", False):
         result.update(
             _emit_artifacts(
@@ -174,7 +234,15 @@ def _success_response(
                 "success",
                 packet,
                 receipt,
-                telemetry_context,
+                _merge_telemetry_context(
+                    telemetry_context,
+                    {
+                        "serialization_requested_profile": rendered_artifact.requested_profile,
+                        "serialization_used_profile": rendered_artifact.used_profile,
+                        "serialization_artifact_kind": rendered_artifact.artifact_kind,
+                        "serialization_fallback_used": rendered_artifact.fallback_used,
+                    },
+                ),
                 candidate_refs or [],
             )
         )
@@ -512,6 +580,7 @@ def execute_slice_05(request: dict[str, Any]) -> dict[str, Any]:
 def execute_slice_06(request: dict[str, Any]) -> dict[str, Any]:
     return _execute_live_or_replay(request)
 
+
 def execute_slice_07(request: dict[str, Any]) -> dict[str, Any]:
     result = execute_slice_06(request)
     try:
@@ -526,4 +595,3 @@ def execute_slice_07(request: dict[str, Any]) -> dict[str, Any]:
         result["control_plane_export_ok"] = True
 
     return result
-

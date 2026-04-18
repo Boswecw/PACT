@@ -1,5 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bds.local/pact/v1/schemas/runtime_receipt.schema.json",
   "title": "PACT V1 Runtime Receipt",
   "type": "object",
   "required": [
@@ -13,6 +14,7 @@
     "retrieval_mode",
     "pruning_mode",
     "serialization_profile",
+    "serialization_evidence",
     "degradation_state",
     "source_lineage_digest",
     "packet_hash",
@@ -24,7 +26,7 @@
   "properties": {
     "schema_version": {
       "type": "string",
-      "const": "1.0.0"
+      "const": "1.1.0"
     },
     "receipt_id": {
       "type": "string"
@@ -79,6 +81,9 @@
     "serialization_profile": {
       "$ref": "./serialization_profile_enum.schema.json"
     },
+    "serialization_evidence": {
+      "$ref": "./serialization_evidence.schema.json"
+    },
     "degradation_state": {
       "$ref": "./degradation_state_enum.schema.json"
     },
@@ -108,8 +113,7 @@
           "minimum": 0
         },
         "reduction_percentage": {
-          "type": "number",
-          "minimum": 0
+          "type": "number"
         }
       },
       "additionalProperties": false
@@ -151,6 +155,5 @@
       "type": "boolean"
     }
   },
-  "additionalProperties": false,
-  "$id": "https://bds.local/pact/v1/schemas/runtime_receipt.schema.json"
+  "additionalProperties": false
 }

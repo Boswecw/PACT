@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bds.local/pact/v1/schemas/serialization_evidence.schema.json",
+  "title": "PACT V1 Serialization Evidence",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "requested_profile",
+    "used_profile",
+    "render_attempted",
+    "fallback_used",
+    "artifact_kind",
+    "artifact_version",
+    "artifact_hash",
+    "segment_meta",
+    "token_estimates"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "requested_profile": {
+      "$ref": "./serialization_profile_enum.schema.json"
+    },
+    "used_profile": {
+      "$ref": "./serialization_profile_enum.schema.json"
+    },
+    "render_attempted": {
+      "type": "boolean"
+    },
+    "fallback_used": {
+      "type": "boolean"
+    },
+    "fallback_reason": {
+      "type": "string"
+    },
+    "artifact_kind": {
+      "type": "string",
+      "enum": [
+        "plain_text",
+        "toon_segment"
+      ]
+    },
+    "artifact_version": {
+      "type": "string"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]+$"
+    },
+    "segment_meta": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "./serialization_evidence_segment_meta.schema.json"
+        }
+      ]
+    },
+    "token_estimates": {
+      "$ref": "./serialization_evidence_token_estimates.schema.json"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "fallback_used": {
+            "const": true
+          }
+        },
+        "required": [
+          "fallback_used"
+        ]
+      },
+      "then": {
+        "required": [
+          "fallback_reason"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "fallback_reason"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "artifact_kind": {
+            "const": "toon_segment"
+          }
+        },
+        "required": [
+          "artifact_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "segment_meta": {
+            "$ref": "./serialization_evidence_segment_meta.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "artifact_kind": {
+            "const": "plain_text"
+          }
+        },
+        "required": [
+          "artifact_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "segment_meta": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}
